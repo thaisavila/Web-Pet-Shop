@@ -1,12 +1,14 @@
 from fastapi import FastAPI, Depends, HTTPException, status
 from fastapi.security import HTTPBearer
+from fastapi.staticfiles import StaticFiles
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker, Session
+from fastapi.middleware.cors import CORSMiddleware
+from typing import List
 
-
-from schemas import UsuarioRegistro, UsuarioLogin, TokenResposta, UsuarioResposta
+from schemas import UsuarioRegistro, UsuarioLogin, TokenResposta, UsuarioResposta, CategoriaResposta, ServicoResumido, ServicoDetalhado
 from security import hash_senha, verificar_senha, criar_access_token, verificar_token
-from models import Base, Usuario
+from models import Base, Usuario, Categoria, Servico
 
 # Configuração do banco de dados (SQLite para desenvolvimento)
 DATABASE_URL = "sqlite:///./petshopDB.sqlite"
@@ -16,6 +18,14 @@ SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
 Base.metadata.create_all(bind=engine)
 
 app = FastAPI(title="API Autenticação")
+
+#CORS: pra fazer a chamada do frontend
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 security = HTTPBearer()
 
@@ -104,6 +114,50 @@ def login(dados: UsuarioLogin, db: Session = Depends(get_db)):
 def obter_perfil(usuario: Usuario = Depends(get_usuario_atual)):
     """Retorna dados do usuário autenticado"""
     return usuario
+
+
+#categorias
+@app.get("/api/categorias", response_model=List[CategoriaResposta])
+def listar_categorias(db: Session = Depends(get_db)):
+    return db.query(Categoria).all()
+
+@app.get("/api/categorias/{categoria_id}", response_model=CategoriaResposta)
+def detalhar_categoria(categoria_id: int, db: Session = Depends(get_db)):
+    categoria = db.query(Categoria).filter(Categoria.id == categoria_id).first()
+    if not categoria:
+        raise HTTPException(status_code=404, detail="Categoria não encontrada")
+    return categoria
+
+#serviços
+@app.get("/api/categorias/{categoria_id}/servicos", response_model=List[ServicoResumido])
+def listar_servicos_por_categoria(categoria_id: int, db: Session = Depends(get_db)):
+    categoria = db.query(Categoria).filter(Categoria.id == categoria_id).first() 
+    if not categoria:
+        raise HTTPException(status_code=404, detail="Categoria não encontrada")
+ 
+    return (
+        db.query(Servico)
+        .filter(Servico.categoria_id == categoria_id)
+        .order_by(Servico.nome)
+        .all()
+    )
+
+@app.get("/api/servicos/mais-agendados", response_model=List[ServicoResumido])
+def servicos_mais_agendados(limit: int = 5, db: Session = Depends(get_db)):
+    return (
+        db.query(Servico)
+        .order_by(Servico.agendamentos.desc()) 
+        .limit(limit)
+        .all()
+    )
+
+@app.get("/api/servicos/{servico_id}", response_model=ServicoDetalhado)
+def detalhar_servico(servico_id: int, db: Session = Depends(get_db)):
+    """Retorna detalhes completos de um serviço — página 3"""
+    servico = db.query(Servico).filter(Servico.id == servico_id).first()
+    if not servico:
+        raise HTTPException(status_code=404, detail="Serviço não encontrado")
+    return servico
 
 
 if __name__ == "__main__":
