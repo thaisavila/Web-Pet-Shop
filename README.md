@@ -1,5 +1,6 @@
 backend:
-1 - cria o ambiente virtual (cada um tem q ter na própria máquina
+
+1 - cria o ambiente virtual (cada um tem que ter na própria máquina
 python -m venv .venv
 
 2 - ativa ele: .venv\Scripts\activate
