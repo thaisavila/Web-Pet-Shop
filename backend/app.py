@@ -28,6 +28,8 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
+app.mount("/imagens", StaticFiles(directory="imagens"), name="imagens")
+
 security = HTTPBearer()
 
 
