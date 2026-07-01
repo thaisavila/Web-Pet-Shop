@@ -76,36 +76,57 @@ detalhes do serviço (página 3). -->
 
 
 
-<script src="js/data.js"></script>
+<script src="js/api.js"></script>
 <script>
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('DOMContentLoaded', async () => {
   const params = new URLSearchParams(window.location.search);
-  const catId = params.get('cat') || 'banho';
-  const cat = CATS.find(c => c.id === catId);
-  const services = SERVICES.filter(s => s.cat === catId);
+  const catId = params.get('cat');
+
+  if (!catId) {
+    window.location.href = 'index.html';
+    return;
+  }
+
+  try {
+    const [cat, services] = await Promise.all([
+      api.detalharCategoria(catId),
+      api.listarServicosPorCategoria(catId),
+    ]);
+
+    document.getElementById('cat-title').textContent = cat.nome;
+    document.getElementById('cat-desc').textContent = cat.descricao ?? '';
+    document.getElementById('cat-icon-wrap').innerHTML = getIcon(iconForCategoria(cat.nome), 28, '#4CAF7A');
+
+    document.getElementById('category-services-grid').innerHTML = services.map(s => `
+      <div class="card" onclick="window.location.href='detalhes.html?id=${s.id}'">
+        <div class="card-img">
+          <img src="${resolveImg(s.imagem_url)}" alt="${s.nome}" />
+          <div class="card-img-overlay"></div>
+        </div>
+        <div class="card-body">
+          <div class="card-title">${s.nome}</div>
+          <div class="card-desc">${s.descricao_curta ?? ''}</div>
+          <div class="price-row" style="margin-top:10px">
+            <span class="price">R$ ${s.valor_estimado != null ? Number(s.valor_estimado).toFixed(2) : '—'}</span>
+            <span class="duration">${s.duracao_media ?? ''}</span>
+          </div>
+        </div>
+        <div class="card-footer">
+          <button class="btn btn-primary btn-sm" style="width:100%;justify-content:center"
+            onclick="event.stopPropagation();addToCart(${s.id}, '${escAttr(s.nome)}', ${s.valor_estimado ?? 'null'}, '${escAttr(s.duracao_media ?? '')}')">
+            Agendar ${getIcon('cart', 13, 'white')}
+          </button>
+        </div>
+      </div>
+    `).join('');
+  } catch (e) {
+    console.error(e);
+    document.getElementById('category-services-grid').innerHTML = '<p>Não foi possível carregar os serviços desta categoria.</p>';
+  }
   
-  document.getElementById('cat-title').textContent = cat.name;
-  document.getElementById('cat-desc').textContent = cat.desc;
-  document.getElementById('cat-icon-wrap').innerHTML = getIcon(cat.icon, 28, '#4CAF7A');
-  
-  document.getElementById('category-services-grid').innerHTML = services.map(s => `
-    <div class="card" onclick="window.location.href='detalhes.html?id=${s.id}'">
-      <div class="card-img">
-        <img src="${s.img}" alt="${s.name}" />
-        <div class="card-img-overlay"></div>
-        ${s.popular ? `<div class="popular-badge">${getIcon('star',11,'#3A3A3A')} Mais pedido</div>` : ''}
-      </div>
-      <div class="card-body">
-        <div class="card-title">${s.name}</div>
-        <div class="card-desc">${s.short}</div>
-        <div class="price-row" style="margin-top:10px"><span class="price">${s.price}</span><span class="duration">${s.dur}</span></div>
-      </div>
-      <div class="card-footer">
-        <button class="btn btn-primary btn-sm" style="width:100%;justify-content:center" onclick="event.stopPropagation();addToCart('${s.id}')">Agendar ${getIcon('cart', 13, 'white')}</button>
-      </div>
-    </div>
-  `).join('');
 });
+
+
 </script>
 
 

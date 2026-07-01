@@ -79,35 +79,45 @@ imagem ilustrativa. -->
 
 
 
-<script src="js/data.js"></script>
+<script src="js/api.js"></script>
+<script src="js/serviços.js" defer></script>
 <script>
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('DOMContentLoaded', async () => {
   const params = new URLSearchParams(window.location.search);
   const svcId = params.get('id');
-  const s = SERVICES.find(x => x.id === svcId);
-  if(!s) return window.location.href = 'index.html';
 
-  const listHtml = (arr) => arr.map(i => `<li>${i}</li>`).join('');
+  let s;
+  try {
+    s = await api.detalharServico(svcId);
+  } catch (e) {
+    return window.location.href = 'index.html';
+  }
+
+  // "cuidados" no back é texto único, não array — trate como parágrafo
+  // (se você separar por vírgula/linha no seed.py, dá pra transformar em lista)
+  const cuidadosHtml = s.cuidados
+    ? `<div class="detail-list"><h3>Cuidados Necessários</h3><p>${s.cuidados}</p></div>`
+    : '';
 
   document.getElementById('service-detail-content').innerHTML = `
     <div>
-      <div class="detail-img"><img src="${s.img}" alt="${s.name}" /></div>
+      <div class="detail-img"><img src="${resolveImg(s.imagem_url)}" alt="${s.nome}" /></div>
       <div class="detail-body" style="margin-top:24px">
-        <h1>${s.name}</h1>
+        <h1>${s.nome}</h1>
         <div class="detail-meta">
-          <span class="meta-chip">${getIcon('clock',14,'#4CAF7A')} ${s.dur}</span>
-          <span class="meta-chip">${getIcon('user',14,'#4CAF7A')} ${s.prof}</span>
+          <span class="meta-chip">${getIcon('clock',14,'#4CAF7A')} ${s.duracao_media ?? ''}</span>
+          <span class="meta-chip">${getIcon('user',14,'#4CAF7A')} ${s.profissional ?? ''}</span>
         </div>
-        <p class="detail-desc">${s.desc}</p>
-        ${s.care ? `<div class="detail-list"><h3>Cuidados Necessários</h3><ul>${listHtml(s.care)}</ul></div>` : ''}
-        ${s.benefits ? `<div class="detail-list"><h3>Benefícios</h3><ul>${listHtml(s.benefits)}</ul></div>` : ''}
+        <p class="detail-desc">${s.descricao_completa ?? ''}</p>
+        ${cuidadosHtml}
       </div>
     </div>
     <div>
       <div class="booking-card">
-        <h3>${s.name}</h3><div class="booking-price">${s.price}</div>
-        <button class="btn btn-primary add-cart-btn" onclick="addToCart('${s.id}')">${getIcon('cart',16,'white')} Adicionar ao agendamento</button>
-        <button class="btn btn-outline add-cart-btn" style="margin-top:10px; " onclick="window.location.href='agendamento.html'"> ${getIcon('calendar',16,'var(--dark)')} Ver agendamentos</button>
+        <h3>${s.nome}</h3>
+        <div class="booking-price">R$ ${s.valor_estimado?.toFixed(2) ?? '—'}</div>
+        <button class="btn btn-primary add-cart-btn" onclick="addToCart(${s.id})">${getIcon('cart',16,'white')} Adicionar ao agendamento</button>
+        <button class="btn btn-outline add-cart-btn" style="margin-top:10px;" onclick="window.location.href='agendamento.html'">${getIcon('calendar',16,'var(--dark)')} Ver agendamentos</button>
       </div>
     </div>
   `;

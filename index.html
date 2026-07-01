@@ -205,26 +205,22 @@ usuário para a tela que lista os itens já inseridos na seleção/carrinho (pá
   </footer>
 
 
-<script src="js/data.js"></script>
+<script src="js/api.js"></script>
 <script>
-function filterCategories(term) {
+let allCategorias = [];
+
+function renderCategorias(list) {
   const grid = document.getElementById('categories-grid');
-  const count = document.getElementById('search-count');
-  const filtered = term ? CATS.filter(c => c.name.toLowerCase().includes(term.toLowerCase())) : CATS;
-  if(count) {
-    count.textContent = term ? `${filtered.length} resultado(s) para "${term}"` : '';
-    count.classList.toggle('hidden', !term);
-  }
-  grid.innerHTML = filtered.map(c => `
+  grid.innerHTML = list.map(c => `
     <div class="card" onclick="window.location.href='serviços.html?cat=${c.id}'">
       <div class="card-img">
-        <img src="${c.img}" alt="${c.name}" />
+        <img src="${resolveImg(c.imagem_url)}" alt="${c.nome}" />
         <div class="card-img-overlay"></div>
-        <div class="card-icon-badge">${getIcon(c.icon, 20, '#4CAF7A')}</div>
+        <div class="card-icon-badge">${getIcon(iconForCategoria(c.nome), 20, '#4CAF7A')}</div>
       </div>
       <div class="card-body">
-        <div class="card-title">${c.name}</div>
-        <div class="card-desc">${c.desc}</div>
+        <div class="card-title">${c.nome}</div>
+        <div class="card-desc">${c.descricao ?? ''}</div>
       </div>
       <div class="card-footer">
         <button class="btn btn-primary btn-sm" style="width:100%;justify-content:center">Ver serviços ${getIcon('arrow', 14, 'white')}</button>
@@ -233,28 +229,54 @@ function filterCategories(term) {
   `).join('');
 }
 
-function renderPopular() {
-  const popular = SERVICES.filter(s => s.popular);
-  document.getElementById('popular-grid').innerHTML = popular.map(s => `
-    <div class="card popular" onclick="window.location.href='detalhes.html?id=${s.id}'">
-      <div class="card-img" style="height:176px">
-        <div class="popular-badge">${getIcon('star',11,'#3A3A3A')} Mais pedido</div>
-        <img src="${s.img}" alt="${s.name}" />
-        <div class="card-img-overlay"></div>
-      </div>
-      <div class="card-body">
-        <div class="card-title">${s.name}</div>
-        <div class="card-desc">${s.short}</div>
-      </div>
-      <div class="card-footer">
-        <div class="price-row"><span class="price">${s.price}</span><span class="duration">${s.dur}</span></div>
-      </div>
-    </div>
-  `).join('');
+function filterCategories(term) {
+  const count = document.getElementById('search-count');
+  const filtered = term
+    ? allCategorias.filter(c => c.nome.toLowerCase().includes(term.toLowerCase()))
+    : allCategorias;
+  if(count) {
+    count.textContent = term ? `${filtered.length} resultado(s) para "${term}"` : '';
+    count.classList.toggle('hidden', !term);
+  }
+  renderCategorias(filtered);
 }
 
-document.addEventListener('DOMContentLoaded', () => {
-  filterCategories('');
+async function renderPopular() {
+  try {
+    const popular = await api.maisAgendados(5);
+    document.getElementById('popular-grid').innerHTML = popular.map(s => `
+      <div class="card popular" onclick="window.location.href='detalhes.html?id=${s.id}'">
+        <div class="card-img" style="height:176px">
+          <div class="popular-badge">${getIcon('star',11,'#3A3A3A')} Mais pedido</div>
+          <img src="${resolveImg(s.imagem_url)}" alt="${s.nome}" />
+          <div class="card-img-overlay"></div>
+        </div>
+        <div class="card-body">
+          <div class="card-title">${s.nome}</div>
+          <div class="card-desc">${s.descricao_curta ?? ''}</div>
+        </div>
+        <div class="card-footer">
+          <div class="price-row">
+            <span class="price">R$ ${s.valor_estimado != null ? Number(s.valor_estimado).toFixed(2) : '—'}</span>
+            <span class="duration">${s.duracao_media ?? ''}</span>
+          </div>
+        </div>
+      </div>
+    `).join('');
+  } catch (e) {
+    console.error(e);
+    document.getElementById('popular-grid').innerHTML = '<p>Não foi possível carregar os serviços mais procurados.</p>';
+  }
+}
+
+document.addEventListener('DOMContentLoaded', async () => {
+  try {
+    allCategorias = await api.listarCategorias();
+    filterCategories('');
+  } catch (e) {
+    console.error(e);
+    document.getElementById('categories-grid').innerHTML = '<p>Não foi possível carregar as categorias.</p>';
+  }
   renderPopular();
 });
 

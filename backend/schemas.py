@@ -54,6 +54,7 @@ class ServicoResumido(BaseModel):
     id: int
     nome: str
     descricao_curta: Optional[str]
+    duracao_media: Optional[str]
     valor_estimado: Optional[float]
     imagem_url: Optional[str]
     agendamentos: int
