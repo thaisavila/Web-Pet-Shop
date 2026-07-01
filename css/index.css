@@ -194,9 +194,6 @@ nav.main {
 }
 .mobile-menu a:hover { background: rgba(76,175,122,.1); color: var(--green); }
 
-/* ── Pages ───────────────────────────────────────── */
-.page { display: none; }
-.page.active { display: block; }
 
 /* ── Hero ────────────────────────────────────────── */
 .hero {
@@ -237,6 +234,7 @@ nav.main {
   font-size: .95rem; color: var(--dark);
   box-shadow: 0 4px 24px rgba(0,0,0,.22);
   outline: none; transition: box-shadow .2s;
+  text-indent: 30px;
 }
 .search-bar input:focus { box-shadow: 0 4px 24px rgba(0,0,0,.22), 0 0 0 2px var(--green); }
 .hero-highlights { display: flex; flex-wrap: wrap; gap: 16px; margin-top: 28px; }

@@ -7,7 +7,7 @@
   <link rel="stylesheet" href="css/serviços.css">
   <script src="js/serviços.js" defer></script>
 </head>
-<body id="page-category" class="page"></body>
+<body id="page-category" class="page">
 <!-- 2. [página 2] Para cada categoria, deve existir uma página de serviços com a listagem de serviços em
 formato de cards.
 a. Cada serviço deve ser apresentado em uma seção. Exibir pelo menos 5 itens por categoria, cada um em
@@ -60,11 +60,20 @@ detalhes do serviço (página 3). -->
 <div id="page-service" class="page">
   <section style="padding-top:36px">
     <div class="container">
-      <a href="" class="back-btn" id="service-back-btn" onclick="return false;">
+      <a href="index.html" class="back-btn" id="service-back-btn">
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><polyline points="15 18 9 12 15 6"/></svg>
         Voltar
       </a>
-      <div class="detail-grid" id="service-detail-content"></div>
+
+      <div class="cat-header" style="display:flex;align-items:center;gap:16px;margin:20px 0 32px">
+        <div id="cat-icon-wrap" style="width:56px;height:56px;border-radius:14px;background:rgba(76,175,122,.12);display:flex;align-items:center;justify-content:center;flex-shrink:0"></div>
+        <div>
+          <h1 id="cat-title" style="margin:0">Carregando...</h1>
+          <p id="cat-desc" style="margin:4px 0 0;color:var(--muted)"></p>
+        </div>
+      </div>
+
+      <div class="grid-3" id="category-services-grid"></div>
     </div>
   </section>
 </div>
@@ -123,10 +132,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     console.error(e);
     document.getElementById('category-services-grid').innerHTML = '<p>Não foi possível carregar os serviços desta categoria.</p>';
   }
-  
 });
-
-
 </script>
 
 

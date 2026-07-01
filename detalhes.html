@@ -80,23 +80,34 @@ imagem ilustrativa. -->
 
 
 <script src="js/api.js"></script>
-<script src="js/serviços.js" defer></script>
 <script>
 document.addEventListener('DOMContentLoaded', async () => {
   const params = new URLSearchParams(window.location.search);
   const svcId = params.get('id');
+  if (!svcId) return window.location.href = 'index.html';
 
   let s;
   try {
     s = await api.detalharServico(svcId);
   } catch (e) {
+    console.error(e);
     return window.location.href = 'index.html';
   }
 
-  // "cuidados" no back é texto único, não array — trate como parágrafo
-  // (se você separar por vírgula/linha no seed.py, dá pra transformar em lista)
-  const cuidadosHtml = s.cuidados
-    ? `<div class="detail-list"><h3>Cuidados Necessários</h3><p>${s.cuidados}</p></div>`
+  // "cuidados" é armazenado como texto único no banco (não uma lista).
+  // Se cada cuidado estiver separado por ";" ou quebra de linha no seed,
+  // isso já vira uma lista de itens automaticamente.
+  const cuidadosItens = (s.cuidados || '')
+    .split(/;|\n/)
+    .map(i => i.trim())
+    .filter(Boolean);
+
+  const cuidadosHtml = cuidadosItens.length
+    ? `<div class="detail-list"><h3>Cuidados Necessários</h3>
+        ${cuidadosItens.length > 1
+          ? `<ul>${cuidadosItens.map(i => `<li>${i}</li>`).join('')}</ul>`
+          : `<p>${cuidadosItens[0]}</p>`}
+       </div>`
     : '';
 
   document.getElementById('service-detail-content').innerHTML = `
@@ -108,16 +119,16 @@ document.addEventListener('DOMContentLoaded', async () => {
           <span class="meta-chip">${getIcon('clock',14,'#4CAF7A')} ${s.duracao_media ?? ''}</span>
           <span class="meta-chip">${getIcon('user',14,'#4CAF7A')} ${s.profissional ?? ''}</span>
         </div>
-        <p class="detail-desc">${s.descricao_completa ?? ''}</p>
+        <p class="detail-desc">${s.descricao_completa ?? s.descricao_curta ?? ''}</p>
         ${cuidadosHtml}
       </div>
     </div>
     <div>
       <div class="booking-card">
         <h3>${s.nome}</h3>
-        <div class="booking-price">R$ ${s.valor_estimado?.toFixed(2) ?? '—'}</div>
-        <button class="btn btn-primary add-cart-btn" onclick="addToCart(${s.id})">${getIcon('cart',16,'white')} Adicionar ao agendamento</button>
-        <button class="btn btn-outline add-cart-btn" style="margin-top:10px;" onclick="window.location.href='agendamento.html'">${getIcon('calendar',16,'var(--dark)')} Ver agendamentos</button>
+        <div class="booking-price">R$ ${s.valor_estimado != null ? Number(s.valor_estimado).toFixed(2) : '—'}</div>
+        <button class="btn btn-primary add-cart-btn" onclick="addToCart(${s.id}, '${escAttr(s.nome)}', ${s.valor_estimado ?? 'null'}, '${escAttr(s.duracao_media ?? '')}')">${getIcon('cart',16,'white')} Adicionar ao agendamento</button>
+        <button class="btn btn-outline add-cart-btn" style="margin-top:10px; " onclick="window.location.href='agendamento.html'"> ${getIcon('calendar',16,'var(--dark)')} Ver agendamentos</button>
       </div>
     </div>
   `;
