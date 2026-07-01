@@ -1,49 +1,152 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
+  <title>Cadastro</title>
   <link rel="stylesheet" href="css/cadastro.css">
   <script src="js/cadastro.js" defer></script>
 
 </head>
+
 <body>
-  <!-- 4. [página 4] A página de cadastro de novo tutor e/ou pet deve apresentar campos para cadastro de uma
-pessoa, incluindo CPF, Email, Endereço, Cidade, senha e login de acesso. Também devem ser incluídos
-campos coerentes com o contexto, como telefone, nome do pet, espécie, raça, idade do pet e observações
-de saúde. Utilize o método GET para que possamos avaliar os campos que estão sendo enviados; -->
-
-<div>
-  <h3>cadastro</h3>
-  <p>Cadastre-se para agendar serviços para seu pet</p>
-</div>
-
-<section>
   <div>
-    <h5>Dados do Tutor</h5>
-    <p>Informações pessoais do responsável pelo pet</p>
+    <h1>Cadastro</h1>
+    <p>Cadastre-se para agendar serviços para seu pet</p>
+    
+
   </div>
 
-  <div>
-    <label for="nome_dono" >Nome completo *</label>
-    <input type="text" id="nome_dono" name="nome_dono" placeholder="João Silva Pereira">
+  <section class="container">
+    <div class="container_titulo">
+      <h5>Dados do Tutor</h5>
+      <p>Informações pessoais do responsável pelo pet</p>
+    </div>
 
-    <label for="cpf" >CPF *</label>
-    <input type="text" id="cpf" name="cpf" placeholder="000.000.000-00">
+    <div class="container_conteudo">
+      <div class="label_input">
+        <label for="nome_dono">Nome completo *</label>
+        <input type="text" id="nome_dono" name="nome_dono" placeholder="Seu nome completo" onblur="erro_nome()">
+        <small class="erro" id="erro_nome"></small>
+        <small class="ok" id="ok_nome"></small>
+      </div>
 
-    <label for="email" >Email *</label>
-    <input type="email" id="email" name="email" placeholder="nome@gmail.com">
+      <div class="label_input">
+        <label for="email">Email *</label>
+        <input type="email" id="email" name="email" placeholder="nome@gmail.com" onblur="erro_email()">
+        <small class="erro" id="erro_email"></small>
+        <small class="ok" id="ok_email"></small>
+      </div>
 
-    <label for="telefone" >Telefone * </label>
-    <input type="number" id="telefone" name="telefone" placeholder="(00) 00000-0000">
-  </div>
+      <div class="label_input">
+        <label for="cpf">CPF *</label>
+        <input type="number" id="cpf" name="cpf" placeholder="000.000.000-00" onblur="erro_cpf()">
+        <small class="erro" id="erro_cpf"></small>
+        <small class="ok" id="ok_cpf"></small>
+      </div>
 
-  <button>Cancelar</button>
-  <button>Finalizar Cadastro</button>
+      <div class="label_input">
+        <label for="telefone">Telefone * </label>
+        <input type="number" id="telefone" name="telefone" placeholder="00 00000 0000" onblur="erro_telefone()">
+        <small class="erro" id="erro_telefone"></small>
+        <small class="ok" id="ok_telefone"></small>
+      </div>
 
-  <p>Já tem uma conta?</p>
-  <a href="login.html">Login</a>
-</section>
+      <div class="label_input">
+        <label for="endereco">Endereço * </label>
+        <input type="text" id="endereco" name="endereco" placeholder="Sua Rua" onblur="erro_endereco()">
+        <small class="erro" id="erro_endereco"></small>
+        <small class="ok" id="ok_endereco"></small>
+      </div>
+
+      <div class="label_input">
+        <label for="bairro">Bairro * </label>
+        <input type="text" id="bairro" name="bairro" placeholder="Seu Bairro" onblur="erro_bairro()">
+        <small class="erro" id="erro_bairro"></small>
+        <small class="ok" id="ok_bairro"></small>
+      </div>
+
+      <div class="label_input">
+        <label for="cidade">Cidade * </label>
+        <input type="text" id="cidade" name="cidade" placeholder="Sua Cidade" onblur="erro_cidade()">
+        <small class="erro" id="erro_cidade"></small>
+        <small class="ok" id="ok_cidade"></small>
+      </div>
+
+      <div class="label_input">
+        <label for="estado">Estado * </label>
+        <input type="text" id="estado" name="estado" placeholder="Seu Estado" onblur="erro_estado()">
+        <small class="erro" id="erro_estado"></small>
+        <small class="ok" id="ok_estado"></small>
+      </div>
+
+      <div class="label_input">
+        <label for="senha_1">Senha * </label>
+        <input type="text" id="senha_1" name="senha_1" placeholder="Crie uma senha" onblur="erro_senha()">
+        <small class="erro" id="erro_senha"></small>
+        <small class="ok" id="ok_senha"></small>
+      </div>
+
+      <div class="label_input">
+        <label for="senha">Senha * </label>
+        <input type="text" id="senha" name="senha" placeholder="Repita sua senha" onblur="erro_repetir_senha()">
+        <small class="erro" id="erro_repetir_senha"></small>
+        <small class="ok" id="ok_repetir_senha"></small>
+      </div>
+    </div>
+  </section>
+
+  <section class="container">
+    <div class="container_titulo">
+      <h5>Dados do Pet</h5>
+      <p>Informações sobre seu animal de estimação</p>
+    </div>
+
+    <section class="container_conteudo">
+      <div class="label_input">
+        <label for="nome_pet">Nome do Pet * </label>
+        <input type="text" id="nome_pet" name="nome_pet" placeholder="Digite o nome do seu Pet" onchange="nome_pet()">
+        <small class="erro" id="erro_nome_pet"></small>
+        <small class="ok" id="ok_nome_pet"></small>
+        
+      </div>
+      <div class="label_input">
+        <label for="data_nasc_pet">Data de Nascimento * </label>
+        <input type="date" id="data_nasc_pet" name="data_nasc_pet" onchange="data_nasc_pet()">
+        <small class="erro" id="erro_nasc_pet"></small>
+        <small class="ok" id="ok_nasc_pet"></small>
+        
+      </div>
+      <div class="label_input">
+        <label for="especie">Especie * </label>
+        <input type="text" id="especie" name="especie" onchange="especie()">
+        <small class="erro" id="erro_especie"></small>
+        <small class="ok" id="ok_especie"></small>
+        
+      </div>
+      <div class="label_input">
+        <label for="raca">Raça * </label>
+        <input type="text" id="raca" name="raca" onchange="raca()">
+        <small class="erro" id="erro_raca"></small>
+        <small class="ok" id="ok_raca"></small>
+        
+      </div>
+
+    </section>
+  </section>
+
+  <section>
+    <div id="div_botoes">
+      <button id="cancelar"><a href="index.html">Cancelar</a></button>
+      <button id="cadastrar" onclick="validar_cadastro()">Finalizar Cadastro</button>
+    </div>
+    <div id="fim">
+      <p>Já tem uma conta?</p>
+      <a href="login.html">Login</a>
+    </div>
+  </section>
+
 </body>
+
 </html>

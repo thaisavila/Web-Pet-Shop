@@ -1,0 +1,145 @@
+*{
+  padding: 0;
+  margin: 0;
+  
+}
+html {
+  background-color: #FFF8F0;
+  color: #303030;
+  margin: 2%;
+  font-size: 62.5%;
+
+}
+
+body{
+  font-size: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
+}
+h1{
+  color:#303030;
+  align-items: center;
+  display: flex;
+  justify-content: center;
+}
+h5{
+  font-size: 2rem;
+}
+label,p{
+  color:#474646;
+}
+
+.container{
+  border-radius: 1rem;
+  overflow: hidden;
+  box-shadow: 0px 2px 8px #0000001f;
+  width: 80%;
+  max-width: 500rem;
+  gap: 2rem; 
+}
+
+.label_input{
+  display: flex;
+  flex-direction: column;
+}
+
+.container_titulo{
+  background-color: #d2f6cf;
+  padding: 1rem;
+  padding: 4%;
+}
+
+.container_conteudo{
+  background-color: #FFFfff;
+  padding: clamp(2rem, 1vw, 4rem);
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+input{
+  border:1px solid #b5b4b4;
+  cursor: pointer;
+  color: #b5b4b4;
+  padding: 1rem;
+  border-radius: 1rem;
+}
+input:hover{
+  border: 1px solid #70cc66;
+  
+}
+input::placeholder{
+  opacity: 0.5;
+  
+  
+}
+input:focus{
+  border: 2px solid #3e7938;
+  outline: none;
+  color: #529b4a;
+}
+a{
+  color: #3e7938;
+}
+
+#div_botoes{
+  display: flex;
+  gap: 1rem;
+}
+
+#cadastrar{
+  align-items: center;
+  width: 200%;
+  height: 6rem;
+  border-radius: 1.5rem;
+  border: none;
+  background-color: #529b4a;
+  color: #ffffff;
+  box-shadow: 0px 2px 8px #0000001f;
+  font-size: 1.4rem;
+}
+
+#cadastrar:hover{
+  background-color: #3a6b35;
+  cursor: pointer;
+  box-shadow: 0 8px 20px rgba(128, 128, 128, 0.35);
+}
+
+#cancelar{
+  align-items: center;
+  width: 200%;
+  height: 6rem;
+  border-radius: 1.5rem;
+  border: 1px solid #b5b4b4;
+  background-color: transparent;
+  color: #303030;
+  box-shadow: 0px 2px 8px #0000001f;
+  font-size: 1.4rem;
+}
+
+#cancelar:hover{
+  background-color: #FF8A5B;
+  border: none;
+  color: #ffffff;
+  cursor: pointer;
+  box-shadow: 0 8px 20px rgba(128, 128, 128, 0.35);
+}
+#cancelar:hover a{
+  color: #ffffff;
+  
+}
+
+#fim{
+  margin-top: 1rem;
+  display: flex;
+}
+
+.erro{
+  color:red;
+  font-size: 1.2rem;
+}
+.ok{
+  color: green;
+}

@@ -1,187 +1,255 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
-    <link rel="stylesheet" href="css/agendamento.css">
+  <title>Agendamento</title>
+
+  <link rel="stylesheet" href="css/agendamento.css">
   <script src="js/agendamento.js" defer></script>
 </head>
+
 <body>
   <!-- 5. [página 5] A página de agendamento deve apresentar, em formato de tabela, os serviços já adicionados
-ao agendamento, contendo os campos: Imagem, breve descrição e quantidade. O campo de quantidade
+ao pagendamento, contendo os campos: Imagem, breve descrição e quantidade. O campo de quantidade
 deve ser numérico e permitir aumentar ou diminuir a quantidade de pets, vagas ou serviços selecionados.
 Deve conter um botão de “Finalizar Agendamento”. Se o usuário clicar em diminuir para valor igual ou
 menor que zero, exiba uma mensagem de confirmação para que ele confirme se irá ou não excluir o item
 (utilize JS); -->
-<button><a href="index.html">Voltar para Home</a></button>
-<div>
-<h1>Meus Agendamentos</h1>
-<h4>Configure os detalhes e revise os serviços selecionados</h4>
-</div>
+  <button id="button_home"><a href="index.html">← Voltar para Home</a></button>
+  <div id="parte_cima">
+    <h1>Meus Agendamentos</h1>
+    <h4>Configure os detalhes e revise os serviços selecionados</h4>
+  </div>
 
-<section>
-  <section>
-    <h3>Detalhes do Agendamento</h3>
-    <p>Configure os detalhes e revise os serviços selecionados</p>
+  <section id="section_principal">
+    <div id="coluna2">
+      <section class="container_detalhes">
+        <form action="">
+          <div class="titulo_detalhes">
+            <h3>Resumo do pedido</h3>
+          </div>
+
+          <div class="conteudo_detalhes" id="resumo_pedido">
+            <div class="infos_pedido">
+              <p class="p1">Animal</p>
+              <p class="p2">Cachorro</p>
+            </div>
+
+            <div class="infos_pedido">
+              <p class="p1">Porte</p>
+              <p class="p2">Médio</p>
+            </div>
+
+            <div class="infos_pedido">
+              <p class="p1">Fase da vida</p>
+              <p class="p2">Adulto</p>
+
+            </div>
+
+            <hr>
+
+            <div class="infos_pedido">
+              <p class="p1">1 Tosa Completa</p>
+              <p class="p2">R$100,00</p>
+            </div>
+
+            <hr>
+
+            <div class="infos_pedido">
+              <p id="total_escr">Total</p>
+              <p id="total">R$100,00</p>
+            </div>
+
+            <div class="div_letra_pequena">
+              <p class="letra_pequena">Valores ajustados conforme porte e fase de vida do pet. Pode variar no
+                atendimento.</p>
+            </div>
+
+            <div id="div_button">
+              <button id="finalizar_agend">Finalizar Agendamento</button>
+            </div>
+
+            <div class="div_letra_pequena">
+              <p class="letra_pequena">Nossa equipe confirmará seu horário em breve.</p>
+            </div>
+          </div>
+        </form>
+      </section>
+    </div>
+
+    <div id="coluna1">
+      <section class="container_detalhes" id="detalhes">
+        <form action="">
+
+          <div class="titulo_detalhes">
+            <h3>Detalhes do Agendamento</h3>
+          </div>
+
+          <section class="conteudo_detalhes">
+
+            <div id="data">
+              <p id="label_data">Data do agendamento</p>
+              <input type="date" id="input_data" name="data">
+            </div>
+
+            <div id="hora">
+              <h5>Horário</h5>
+
+              <div class="secao_inputs" id="inputs_hora">
+                <input type="radio" id="8" name="hora" checked>
+                <label for="8" class="label_hora">08:00</label>
+
+                <input type="radio" id="9" name="hora">
+                <label for="9" class="label_hora">09:00</label>
+
+                <input type="radio" id="10" name="hora">
+                <label for="10" class="label_hora">10:00</label>
+
+                <input type="radio" id="11" name="hora">
+                <label for="11" class="label_hora">11:00</label>
+
+                <input type="radio" id="14" name="hora">
+                <label for="14" class="label_hora">14:00</label>
+
+                <input type="radio" id="15" name="hora">
+                <label for="15" class="label_hora">15:00</label>
+
+                <input type="radio" id="16" name="hora">
+                <label for="16" class="label_hora">16:00</label>
+
+                <input type="radio" id="17" name="hora">
+                <label for="17" class="label_hora">17:00</label>
+              </div>
+            </div>
+
+            <div id="tipo_animal">
+              <h5>Tipo de animal</h5>
+              <div class="secao_inputs" id="inputs_animais">
+                <input type="radio" id="cao" name="animal" checked>
+                <label for="cao" id="label_animais">
+                  <img src="assets/cao.png" width="30px">
+                  <br>
+                  Cachorro
+                </label>
+
+                <input type="radio" id="gato" name="animal">
+                <label for="gato" id="label_animais">
+                  <img src="assets/gato.png" alt="" width="30px">
+                  <br>
+                  Gato
+                </label>
+
+                <input type="radio" id="passaro" name="animal">
+                <label for="passaro" id="label_animais">
+                  <img src="assets/passaro.png" alt="" width="30px">
+                  <br>
+                  Pássaro
+                </label>
+
+                <input type="radio" id="coelho" name="animal">
+                <label for="coelho" id="label_animais">
+                  <img src="assets/coelho.png" alt="" width="30px">
+                  <br>
+                  Coelho
+                </label>
+
+                <input type="radio" id="hamster" name="animal">
+                <label for="hamster" id="label_animais">
+                  <img src="assets/hamster.png" alt="" width="30px">
+                  <br>
+                  Hamster
+                </label>
+
+                <input type="radio" id="tartaruga" name="animal">
+                <label for="tartaruga" id="label_animais">
+                  <img src="assets/tartaruga.png" alt="" width="30px">
+                  <br>
+                  Tartaruga
+                </label>
+              </div>
+            </div>
+
+            <div id="porte_animal">
+              <h5>Porte do animal</h5>
+              <div class="secao_inputs" id="inputs_porte">
+
+
+                <input type="radio" id="pequeno" name="porte" checked>
+                <label for="pequeno" class="label_porte">Pequeno</label>
+
+                <input type="radio" id="medio" name="porte">
+                <label for="medio" class="label_porte">Médio</label>
+
+                <input type="radio" id="grande" name="porte">
+                <label for="grande" class="label_porte">Grande</label>
+              </div>
+            </div>
+
+            <div id="fase_vida" checked>
+              <h5>Fase da vida</h5>
+              <div class="secao_inputs" id="inputs_fase">
+
+                <input type="radio" id="filhote" name="fase" checked>
+                <label for="filhote" class="label_fase">Filhote</label>
+
+                <input type="radio" id="adulto" name="fase">
+                <label for="adulto" class="label_fase">Adulto</label>
+
+                <input type="radio" id="idoso" name="fase">
+                <label for="idoso" class="label_fase">Idoso</label>
+              </div>
+            </div>
+          </section>
+        </form>
+      </section>
+
+      <section class="container_detalhes">
+        <form action="">
+          <div class="titulo_detalhes">
+            <h3>Serviços selecionados</h3>
+          </div>
+          <div class="conteudo_detalhes">
+            <div>
+              <div id="temas_detalhes">
+                <p>Imagem</p>
+                <p>Serviço</p>
+                <p>Quantidade</p>
+                <p>Total</p>
+              </div>
+
+              <hr>
+
+              <div id="conteudo_detalhes">
+                <div id="div_img_agendamento">
+                <img src="assets/davi.jpg" alt="" width="50px">
+                </div>
+
+                <div id="p_agendamento">
+                <p>Tosa Completa</p>
+                </div>
+
+                <div id="div_quant_agendamento">
+                  <button>-</button>
+                  <p>1</p>
+                  <button>+</button>
+                </div>
+
+                <div id="div_valor">
+                <p>R$100,00</p>
+                <img src="assets/excluir.png" height="20rem" alt="">
+                </div>
+              
+              </div>
+            </div>
+          </div>
+        </form>
+      </section>
+    </div>
+
+
   </section>
-
-  <section>
-  <form action="">
-    <section>
-      <label for="data" >Data do agendamento</label>
-      <input type="date" id="data" name="data">
-    </section>
-
-    <section>
-      <h5>Horário</h5>
-      
-      <input type="radio" id="8" name="hora" >
-      <label for="8" >08:00</label>
-
-      <input type="radio" id="9" name="hora">
-      <label for="9" >09:00</label>
-
-      <input type="radio" id="10" name="hora">
-      <label for="10" >10:00</label>
-
-      <input type="radio" id="11" name="hora">
-      <label for="11" >11:00</label>
-
-      <input type="radio" id="14" name="hora">
-      <label for="14" >14:00</label>
-
-      <input type="radio" id="15" name="hora">
-      <label for="15" >15:00</label>
-
-      <input type="radio" id="16" name="hora">
-      <label for="16" >16:00</label>
-
-      <input type="radio" id="17" name="hora">
-      <label for="17" >17:00</label>
-    </section>
-
-    <section>
-      <h5>Tipo de animal</h5>
-
-      <input type="radio" id="cao" name="animal">
-      <label for="cao" >Cachorro</label>
-
-      <input type="radio" id="gato" name="animal">
-      <label for="gato" >Gato</label>
-
-      <input type="radio" id="passaro" name="Pássaro">
-      <label for="passaro">Pássaro</label>
-
-      <input type="radio" id="coelho" name="animal">
-      <label for="coelho" >Coelho</label>
-
-      <input type="radio" id="hamster" name="animal">
-      <label for="hamster" >Hamster</label>
-
-      <input type="radio" id="tartaruga" name="animal">
-      <label for="tartaruga">Tartaruga</label>
-    </section>
-
-    <section>
-      <h5>Porte do animal</h5>
-
-      <input type="radio" id="pequeno" name="porte">
-      <label for="pequeno" >Pequeno</label>
-
-      <input type="radio" id="medio" name="porte">
-      <label for="medio" >Médio</label>
-
-      <input type="radio" id="grande" name="porte">
-      <label for="grande" >Grande</label>
-    </section>
-
-    <section>
-      <h5>Fase da vida</h5>
-
-      <input type="radio" id="filhote" name="fase">
-      <label for="filhote" >Filhote</label>
-
-      <input type="radio" id="adulto" name="fase">
-      <label for="adulto" >Adulto</label>
-
-      <input type="radio" id="idoso" name="fase">
-      <label for="idoso" >Idoso</label>
-    </section>
-    </section>
-
-    <section>
-      <div>
-        <h3>Serviços selecionados</h3>
-        <p>Serviço</p>
-        <p>Quantidade</p>
-        <p>Total</p>
-      </div>
-
-      <div>
-        <img src="assets/davi.jpg" alt="" width="100px">
-        <p>Tosa Completa</p>
-        <p>Corte completo do pet</p>
-        <p>60-90 minutos • base: R$ 80 - R$ 180</p>
-      </div>
-
-      <div>
-        <button>-</button>
-        <p>1</p>
-        <button>+</button>
-      </div>
-
-      <div>R$100,00</div>
-      <button>Apagar</button>
-    </section>
-
-    <section>
-      <h3>Resumo do pedido</h3>
-
-      <div>
-        <p>Animal</p>
-        <p>Cachorro</p>
-      </div>
-
-      <div>
-        <p>Porte</p>
-        <p>Médio</p>
-      </div>
-
-      <div>
-        <p>Fase da vida</p>
-        <p>Adulto</p>
-      </div>
-
-      <div>
-        <p>1</p>
-        <p>Tosa Completa</p>
-        <p>R$100,00</p>
-      </div>
-
-      <div>
-        <p>Total</p>
-        <p>R$100,00</p>
-      </div>
-
-      <div>
-        <p>Valores ajustados conforme porte e fase de vida do pet. Pode variar no atendimento.</p>
-      </div>
-
-      <div>
-        <button>Finalizar Agendamento</button>
-        <p>Nossa equipe confirmará seu horário em breve</p>
-      </div>
-
-      
-    </section>
-
-
-
-    
-
-
-  </form>
-</section>
 </body>
+
 </html>

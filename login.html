@@ -1,28 +1,50 @@
-<section>
-  <button><a href="index.html">Voltar</a></button>
+<!DOCTYPE html>
+<html lang="en">
 
-  <div>
-    <h3>Bem-vindo de volta!</h3>
-    <p>Acesse sua conta para gerenciar seus agendamentos</p>
-  </div>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login</title>
 
-  <div>
-    <form action="">
-      <label for="email_login" >Email</label>
-      <input type="email" id="email_login" name="email_login" placeholder="Digite seu email">
+  <link rel="stylesheet" href="css/login.css">
+</head>
 
-      <label for="senha_login" >Senha</label>
-      <input type="password" id="senha_login" name="senha_login" placeholder="Digite sua senha">
+<body>
+  <section id="section_principal">
+    <button id="button_home"><a href="index.html" >Voltar</a></button>
 
-      <input type="checkbox" id="conectado" name="conectado">
-      <label for="conectado" >Manter conectado</label>
+    <div id="titulos">
+      <h1>Bem-vindo de volta!</h3>
+      <p>Acesse sua conta para gerenciar seus agendamentos</p>
+    </div>
 
-      <button>Entrar na conta</button>
+      <section>
+        <form action="">
+          <div id="inputs">
+          <label for="email_login">Email</label>
+          <input type="email" id="email_login" name="email_login" placeholder="Digite seu email">
 
-      <div>
-        <p>Não tem uma conta?</p>
-        <a href="cadastro.html">Cadastre-se gratuitamente</a>
-      </div>   
-    </form>
-  </div>
-</section>
+          <label for="senha_login">Senha</label>
+          <input type="password" id="senha_login" name="senha_login" placeholder="Digite sua senha">
+          
+          <div>
+          <input type="checkbox" id="conectado" name="conectado">
+          <label for="conectado">Manter conectado</label>
+          </div>
+          </div>
+
+          <div id="fim">
+          <button id="entrar">Entrar na conta</button>
+
+          <div id="cadastro">
+            <p>Não tem uma conta? </p>
+            <a href="cadastro.html"> Cadastre-se gratuitamente</a>
+          </div>
+          </div>
+        </form>
+      </section>
+    
+  </section>
+</body>
+
+</html>

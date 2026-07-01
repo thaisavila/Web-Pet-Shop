@@ -1,0 +1,140 @@
+*{
+  padding: 0;
+  margin: 0;
+  
+}
+html {
+  background-color: #FFF8F0;
+  color: #303030;
+  margin: 2%;
+  font-size: 62.5%;
+
+}
+
+body{
+  font-size: 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+h1{
+  color:#303030;
+  align-items: center;
+  display: flex;
+  justify-content: center;
+}
+#section_principal{
+  background-color: #ffffff;
+  border-radius: 2rem;
+  box-shadow: 0 8px 20px rgba(128, 128, 128, 0.35);
+  display: flex;
+  flex-direction: column;
+  padding: 3rem;
+  width: 80%;
+  max-width: 50rem;
+  gap: 2rem;
+}
+
+@media (max-width:850px) {
+  #section_principal{
+    width: 60%;
+  }
+}
+
+
+#inputs{
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+#titulos{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+
+#cadastro{
+  display: flex;
+}
+
+label,p{
+  color:#474646;
+}
+
+#entrar{
+  align-items: center;
+  width: 40%;
+  height: 4rem;
+  border-radius: 1.5rem;
+  border: none;
+  background-color: #529b4a;
+  color: #ffffff;
+  box-shadow: 0px 2px 8px #0000001f;
+  font-size: 1.8rem;
+  margin-top: 2rem;
+}
+
+#entrar:hover{
+  background-color: #3a6b35;
+  cursor: pointer;
+  box-shadow: 0 8px 20px rgba(128, 128, 128, 0.35);
+}
+
+@media (max-width:480px) {
+  #entrar {
+    height: 6rem;
+    width: 100%;
+  }
+}
+
+
+input[type="email"], input[type="password"]{
+  border:1px solid #b5b4b4;
+  cursor: pointer;
+  color: #b5b4b4;
+  padding: 1rem;
+  border-radius: 1rem;
+}
+input[type="email"]:hover, input[type="password"]:hover{
+  border: 1px solid #70cc66;
+}
+input[type="email"]:hover::placeholder, input[type="password"]:hover::placeholder{
+  color: #3e7938;
+}
+input[type="email"]:focus, input[type="password"]:focus{
+  border: 2px solid #3e7938;
+  outline: none;
+  color: #529b4a;
+}
+a{
+  color: #3e7938;
+}
+
+input[type="checkbox"]:checked{
+  accent-color: #529b4a;
+}
+
+#fim{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 2rem;
+
+}
+
+#button_home{
+  text-decoration: none;
+  border: none;
+  background-color: transparent;
+  color: #303030;
+  align-self: flex-start;
+}
+
+#button_home:hover{
+  background-color: #2df0400d;
+  border-radius: 1.2rem;
+  cursor: pointer;
+}
