@@ -67,7 +67,10 @@ def registrar(dados: UsuarioRegistro, db: Session = Depends(get_db)):
         )
     novo_usuario = Usuario(
         nome=dados.nome,
+        cpf=dados.cpf,
         email=dados.email,
+        endereco=dados.endereco,
+        cidade=dados.cidade,
         senha_hash=hash_senha(dados.senha)
     )
     db.add(novo_usuario)
@@ -97,7 +100,16 @@ def cadastrar_pet(
     db.add(novo_pet)
     db.commit()
     db.refresh(novo_pet)
-    return novo_pet
+    return {
+        "id": novo_pet.id,
+        "nome": novo_pet.nome,
+        "especie": novo_pet.especie,
+        "raca": novo_pet.raca,
+        "idade": novo_pet.idade,
+        "peso": novo_pet.peso,
+        "telefone": novo_pet.telefone,
+        "tutor_nome": usuario_atual.nome
+    }
 
 @app.post("/api/auth/login", response_model=TokenResposta)
 def login(dados: UsuarioLogin, db: Session = Depends(get_db)):

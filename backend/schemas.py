@@ -3,18 +3,23 @@ from typing import Optional, List
 
 class UsuarioRegistro(BaseModel):
     nome: str = Field(..., min_length=3, max_length=100)
+    cpf: str = Field(..., min_length=11, max_length=14)
     email: EmailStr
+    endereco: str = Field(..., min_length=5, max_length=200)
+    cidade: str = Field(..., min_length=2, max_length=100)
     senha: str = Field(..., min_length=6)
     model_config = ConfigDict(
         json_schema_extra={
             "example": {
-            "nome": "João Silva",
-            "email": "joao@example.com",
-            "senha": "senha123"
-             }
+                "nome": "João Silva",
+                "cpf": "123.456.789-09",
+                "email": "joao@example.com",
+                "endereco": "Rua das Flores, 123",
+                "cidade": "Fortaleza",
+                "senha": "senha123"
+            }
         }
     )
-
 
 class UsuarioLogin(BaseModel):
     email: EmailStr
