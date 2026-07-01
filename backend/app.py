@@ -21,6 +21,7 @@ app = FastAPI(title="API Autenticação")
 
 #CORS: pra fazer a chamada do frontend
 app.add_middleware(
+    
     CORSMiddleware,
     allow_origins=["*"],
     allow_methods=["*"],

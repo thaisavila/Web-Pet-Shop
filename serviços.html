@@ -7,8 +7,7 @@
   <link rel="stylesheet" href="css/serviços.css">
   <script src="js/serviços.js" defer></script>
 </head>
-<body>
-
+<body id="page-category" class="page"></body>
 <!-- 2. [página 2] Para cada categoria, deve existir uma página de serviços com a listagem de serviços em
 formato de cards.
 a. Cada serviço deve ser apresentado em uma seção. Exibir pelo menos 5 itens por categoria, cada um em
@@ -17,5 +16,98 @@ b. Esta página deve obedecer à responsividade da tela, reorganizando a exibiç
 largura da página;
 c. Quando qualquer uma das imagens dos itens for clicada, o usuário deve ser direcionado para a página de
 detalhes do serviço (página 3). -->
+
+
+
+<header id="site-header">
+  <div class="container">
+    <nav class="main">
+      <a href="index.html" class="logo">
+        <div class="logo-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.2"><path d="M11 4C11 5.65685 9.65685 7 8 7C6.34315 7 5 5.65685 5 4C5 2.34315 6.34315 1 8 1C9.65685 1 11 2.34315 11 4Z"/><path d="M19 4C19 5.65685 17.6569 7 16 7C14.3431 7 13 5.65685 13 4C13 2.34315 14.3431 1 16 1C17.6569 1 19 2.34315 19 4Z"/><path d="M4 11C4 12.6569 2.65685 14 1 14C-0.656854 14 -2 12.6569 -2 11C-2 9.34315 -0.656854 8 1 8C2.65685 8 4 9.34315 4 11Z" transform="translate(3,0)"/><path d="M23 11C23 12.6569 21.6569 14 20 14C18.3431 14 17 12.6569 17 11C17 9.34315 18.3431 8 20 8C21.6569 8 23 9.34315 23 11Z"/><path d="M12 10C8 10 4 13 4 17C4 20 7 23 12 23C17 23 20 20 20 17C20 13 16 10 12 10Z"/></svg>
+        </div>
+        <div class="logo-text"><span class="name">Pet<span>Care</span></span><span class="tagline">Cuidado com amor</span></div>
+      </a>
+      <div class="nav-links">
+        <a href="index.html" class="active">Início</a>
+        <a href="#servicos">Serviços</a>
+        <a href="#sobre">Sobre</a>
+        <a href="#contato">Contato</a>
+      </div>
+      <div class="nav-actions">
+        <a href="login.html" class="btn btn-outline btn-sm"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M15 3h4a2 2 0 012 2v14a2 2 0 01-2 2h-4"/><polyline points="10 17 15 12 10 7"/><line x1="15" y1="12" x2="3" y2="12"/></svg>Entrar</a>
+        <a href="agendamento.html" class="btn btn-primary btn-sm cart-btn">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 002 1.61h9.72a2 2 0 002-1.61L23 6H6"/></svg>
+          <span class="desktop-only">Agendamentos</span><span class="cart-badge" id="cart-badge">0</span>
+        </a>
+        <button class="hamburger" id="hamburger-btn" aria-label="Menu">
+          <svg id="ham-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+          <svg id="ham-close" class="hidden" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+        </button>
+      </div>
+    </nav>
+  </div>
+  <div class="mobile-menu" id="mobile-menu">
+    <a href="index.html">Início</a>
+    <a href="#servicos" onclick="closeMobile()">Serviços</a>
+    <a href="#sobre" onclick="closeMobile()">Sobre</a>
+    <a href="#contato" onclick="closeMobile()">Contato</a>
+    <a href="login.html"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" style="vertical-align:middle;margin-right:4px"><path d="M15 3h4a2 2 0 012 2v14a2 2 0 01-2 2h-4"/><polyline points="10 17 15 12 10 7"/><line x1="15" y1="12" x2="3" y2="12"/></svg>Entrar na conta</a>
+  </div>
+</header>
+
+
+<div id="page-service" class="page">
+  <section style="padding-top:36px">
+    <div class="container">
+      <a href="" class="back-btn" id="service-back-btn" onclick="return false;">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><polyline points="15 18 9 12 15 6"/></svg>
+        Voltar
+      </a>
+      <div class="detail-grid" id="service-detail-content"></div>
+    </div>
+  </section>
+</div>
+
+
+
+
+
+
+
+
+<script src="js/data.js"></script>
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  const params = new URLSearchParams(window.location.search);
+  const catId = params.get('cat') || 'banho';
+  const cat = CATS.find(c => c.id === catId);
+  const services = SERVICES.filter(s => s.cat === catId);
+  
+  document.getElementById('cat-title').textContent = cat.name;
+  document.getElementById('cat-desc').textContent = cat.desc;
+  document.getElementById('cat-icon-wrap').innerHTML = getIcon(cat.icon, 28, '#4CAF7A');
+  
+  document.getElementById('category-services-grid').innerHTML = services.map(s => `
+    <div class="card" onclick="window.location.href='detalhes.html?id=${s.id}'">
+      <div class="card-img">
+        <img src="${s.img}" alt="${s.name}" />
+        <div class="card-img-overlay"></div>
+        ${s.popular ? `<div class="popular-badge">${getIcon('star',11,'#3A3A3A')} Mais pedido</div>` : ''}
+      </div>
+      <div class="card-body">
+        <div class="card-title">${s.name}</div>
+        <div class="card-desc">${s.short}</div>
+        <div class="price-row" style="margin-top:10px"><span class="price">${s.price}</span><span class="duration">${s.dur}</span></div>
+      </div>
+      <div class="card-footer">
+        <button class="btn btn-primary btn-sm" style="width:100%;justify-content:center" onclick="event.stopPropagation();addToCart('${s.id}')">Agendar ${getIcon('cart', 13, 'white')}</button>
+      </div>
+    </div>
+  `).join('');
+});
+</script>
+
+
 </body>
 </html>
