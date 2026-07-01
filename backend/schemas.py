@@ -1,17 +1,19 @@
-from pydantic import BaseModel, EmailStr, Field
+from pydantic import BaseModel, EmailStr, Field, ConfigDict
 from typing import Optional, List
 
 class UsuarioRegistro(BaseModel):
     nome: str = Field(..., min_length=3, max_length=100)
     email: EmailStr
     senha: str = Field(..., min_length=6)
-
-    class Config:
-        example = {
+    model_config = ConfigDict(
+        json_schema_extra={
+            "example": {
             "nome": "João Silva",
             "email": "joao@example.com",
             "senha": "senha123"
+             }
         }
+    )
 
 
 class UsuarioLogin(BaseModel):
@@ -23,9 +25,7 @@ class UsuarioResposta(BaseModel):
     id: int
     nome: str
     email: str
-
-    class Config:
-        from_attributes = True
+    model_config = ConfigDict(from_attributes=True)
 
 
 class TokenResposta(BaseModel):
@@ -40,7 +40,7 @@ class CategoriaResposta(BaseModel):
     descricao: Optional[str]
     imagem_url: Optional[str]
  
-    model_config = {"from_attributes": True}
+    model_config = ConfigDict(from_attributes=True)
 
 class ServicoResumido(BaseModel):
     id: int
@@ -51,7 +51,7 @@ class ServicoResumido(BaseModel):
     agendamentos: int
     categoria_id: int
  
-    model_config = {"from_attributes": True}
+    model_config = ConfigDict(from_attributes=True)
 
 class ServicoDetalhado(BaseModel):
     id: int
@@ -67,4 +67,22 @@ class ServicoDetalhado(BaseModel):
     categoria_id: int
     categoria: CategoriaResposta
  
-    model_config = {"from_attributes": True}
+    model_config = ConfigDict(from_attributes=True)
+
+class PetRegistro(BaseModel):
+    nome: str
+    especie: str
+    raca: Optional[str] = None
+    idade: Optional[int] = None
+    peso: Optional[float] = None
+
+class PetResposta(BaseModel):
+    id: int
+    nome: str
+    especie: str
+    raca: Optional[str] = None
+    idade: Optional[int] = None
+    peso: Optional[float] = None
+    tutor_nome: str
+
+    model_config = ConfigDict(from_attributes=True)

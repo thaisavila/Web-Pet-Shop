@@ -14,6 +14,20 @@ class Usuario(Base):
     email = Column(String(100), unique=True, index=True, nullable=False)
     senha_hash = Column(String(255), nullable=False)
     criado_em = Column(DateTime, default=lambda: datetime.now(timezone.utc))
+    pets = relationship("Pet", back_populates="tutor")
+
+class Pet(Base):
+    __tablename__ = "pets"
+
+    id = Column(Integer, primary_key=True, index=True)
+    nome = Column(String, nullable=False)
+    especie = Column(String, nullable=False)
+    raca = Column(String, nullable=True)
+    idade = Column(Integer, nullable=True)
+    peso = Column(Float, nullable=True)
+    tutor_id = Column(Integer, ForeignKey("usuarios.id"), nullable=False)
+
+    tutor = relationship("Usuario", back_populates="pets")
 
 class Categoria(Base):
     __tablename__ = "categorias"
