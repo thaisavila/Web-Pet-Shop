@@ -8,7 +8,7 @@ html {
   color: #303030;
   margin: 2%;
   font-size: 62.5%;
-
+  font-family: 'Inter', sans-serif;
 }
 
 body{
@@ -22,6 +22,7 @@ body{
 h4{
   color: #939393;
   margin-top: 10px;
+  font-family: 'Poppins', sans-serif;
 }
 #section_principal {
   display: grid;
@@ -49,6 +50,7 @@ h4{
   background-color: #d2f6cf;
   padding: 1rem;
   padding: 4%;
+  font-family: 'Poppins', sans-serif;
 }
 
 .conteudo_detalhes{
@@ -247,6 +249,24 @@ hr{
   color: #3e7938;
 }
 
+.btn-qty{
+  border: 1px solid #c4c4c4;
+  background: #fff;
+  border-radius: 0.5rem;
+  width: 2.6rem;
+  height: 2.6rem;
+  cursor: pointer;
+  font-size: 1.6rem;
+}
+.btn-qty:hover{
+  background: #d2f6cf;
+  border-color: #529b4a;
+}
+#finalizar_agend:disabled{
+  opacity: .5;
+  cursor: not-allowed;
+}
+
 
 #label_data{
   font-size: 1.6rem;
@@ -281,6 +301,7 @@ hr{
   background: transparent;
   border: 0rem;
   color: #303030;
+  text-decoration: none;
 }
 
 #button_home a{
@@ -295,10 +316,14 @@ hr{
 }
 
 /* Detalhes */
-#temas_detalhes, #conteudo_detalhes{
+#temas_detalhes{
   display: grid;
   grid-template-columns: 2fr 3fr 2.5fr 2.5fr;
+}
 
+#conteudo_detalhes{
+  display: grid;
+  gap: 4rem;
 }
 
 #div_img img{
@@ -310,9 +335,11 @@ hr{
 #p_agendamento p{
   color: #303030;
   font-size: 100%;
+  margin-left: 50px;
 }
 #div_quant_agendamento{
   display: flex;
+  margin-right: 80px;
 }
 #div_quant_agendamento button{
   width: 2rem;
@@ -324,4 +351,5 @@ hr{
 #div_valor{
   display: flex;
   gap: 1rem;
+  margin-right: 120px;
 }

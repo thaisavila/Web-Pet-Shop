@@ -31,17 +31,33 @@ imagem ilustrativa. -->
 
       <div class="nav-links">
         <a href="index.html" onclick="navigate('home'); return false;" class="active" id="nav-inicio">Início</a>
-        <a href="index.html#servicos">Serviços</a>
-        <a href="index.html#sobre">Sobre</a>
-        <a href="index.html#contato">Contato</a>
+        <a href="#servicos">Serviços</a>
+        <a href="#sobre">Sobre</a>
+        <a href="#contato">Contato</a>
+      </div>
+
+      <div class="nav-actions">
+        <a href="login.html" class="btn btn-outline btn-sm" onclick="navigate('login');return false;">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M15 3h4a2 2 0 012 2v14a2 2 0 01-2 2h-4"/><polyline points="10 17 15 12 10 7"/><line x1="15" y1="12" x2="3" y2="12"/></svg>
+          Entrar
+        </a>
+        <a href="agendamento.html" class="btn btn-primary btn-sm cart-btn" onclick="navigate('agendamento');return false;">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 002 1.61h9.72a2 2 0 002-1.61L23 6H6"/></svg>
+          <span class="desktop-only">Agendamentos</span>
+          <span class="cart-badge" id="cart-badge"></span>
+        </a>
+        <button class="hamburger" id="hamburger-btn" aria-label="Menu">
+          <svg id="ham-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+          <svg id="ham-close" class="hidden" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+        </button>
       </div>
     </nav>
   </div>
   <div class="mobile-menu" id="mobile-menu">
     <a href="index.html" onclick="navigate('home');closeMobile();return false;">Início</a>
-    <a href="index.html#servicos" onclick="closeMobile()">Serviços</a>
-    <a href="index.html#sobre" onclick="closeMobile()">Sobre</a>
-    <a href="index.html#contato" onclick="closeMobile()">Contato</a>
+    <a href="#servicos" onclick="closeMobile()">Serviços</a>
+    <a href="#sobre" onclick="closeMobile()">Sobre</a>
+    <a href="#contato" onclick="closeMobile()">Contato</a>
     <a href="#" onclick="navigate('login');closeMobile();return false;">
       <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" style="vertical-align:middle;margin-right:4px"><path d="M15 3h4a2 2 0 012 2v14a2 2 0 01-2 2h-4"/><polyline points="10 17 15 12 10 7"/><line x1="15" y1="12" x2="3" y2="12"/></svg>
       Entrar na conta
@@ -111,7 +127,7 @@ document.addEventListener('DOMContentLoaded', async () => {
       <div class="booking-card">
         <h3>${s.nome}</h3>
         <div class="booking-price">R$ ${s.valor_estimado != null ? Number(s.valor_estimado).toFixed(2) : '—'}</div>
-        <button class="btn btn-primary add-cart-btn" onclick="addToCart(${s.id}, '${escAttr(s.nome)}', ${s.valor_estimado ?? 'null'}, '${escAttr(s.duracao_media ?? '')}')">${getIcon('cart',16,'white')} Adicionar ao agendamento</button>
+        <button class="btn btn-primary add-cart-btn" onclick="addToCart(${s.id}, '${escAttr(s.nome)}', ${s.valor_estimado ?? 'null'}, '${escAttr(s.duracao_media ?? '')}', '${escAttr(s.imagem_url ?? '')}')">${getIcon('cart',16,'white')} Adicionar ao agendamento</button>
         <button class="btn btn-outline add-cart-btn" style="margin-top:10px; " onclick="window.location.href='agendamento.html'"> ${getIcon('calendar',16,'var(--dark)')} Ver agendamentos</button>
       </div>
     </div>

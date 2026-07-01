@@ -122,7 +122,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         </div>
         <div class="card-footer">
           <button class="btn btn-primary btn-sm" style="width:100%;justify-content:center"
-            onclick="event.stopPropagation();addToCart(${s.id}, '${escAttr(s.nome)}', ${s.valor_estimado ?? 'null'}, '${escAttr(s.duracao_media ?? '')}')">
+            onclick="event.stopPropagation();addToCart(${s.id}, '${escAttr(s.nome)}', ${s.valor_estimado ?? 'null'}, '${escAttr(s.duracao_media ?? '')}', '${escAttr(s.imagem_url ?? '')}')">
             Agendar ${getIcon('cart', 13, 'white')}
           </button>
         </div>
