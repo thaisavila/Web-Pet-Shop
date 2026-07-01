@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Inter:wght@400;500;600&display=swap');
+
 *{
   padding: 0;
   margin: 0;
@@ -8,6 +10,7 @@ html {
   color: #303030;
   margin: 2%;
   font-size: 62.5%;
+  font-family:'Inter', sans-serif;
 
 }
 
@@ -23,12 +26,15 @@ h1{
   align-items: center;
   display: flex;
   justify-content: center;
+  font-family: 'Poppins', sans-serif;
 }
 h5{
   font-size: 2rem;
+  font-family: 'Poppins', sans-serif;
 }
-label,p{
-  color:#474646;
+label, p{
+  color:#616161;
+  font-family:'Inter', sans-serif;
 }
 
 .container{
@@ -87,6 +93,8 @@ a{
 #div_botoes{
   display: flex;
   gap: 1rem;
+  width: 200%;
+  margin-left: -90px;
 }
 
 #cadastrar{
