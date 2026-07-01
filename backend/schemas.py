@@ -24,7 +24,10 @@ class UsuarioLogin(BaseModel):
 class UsuarioResposta(BaseModel):
     id: int
     nome: str
+    cpf: str
     email: str
+    endereco: str
+    cidade: str
     model_config = ConfigDict(from_attributes=True)
 
 
@@ -71,6 +74,7 @@ class ServicoDetalhado(BaseModel):
 
 class PetRegistro(BaseModel):
     nome: str
+    telefone: Optional[str] = None
     especie: str
     raca: Optional[str] = None
     idade: Optional[int] = None
@@ -79,6 +83,7 @@ class PetRegistro(BaseModel):
 class PetResposta(BaseModel):
     id: int
     nome: str
+    telefone: Optional[str] = None
     especie: str
     raca: Optional[str] = None
     idade: Optional[int] = None

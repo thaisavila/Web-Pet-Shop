@@ -11,7 +11,10 @@ class Usuario(Base):
 
     id = Column(Integer, primary_key=True, index=True)
     nome = Column(String(100), nullable=False)
+    cpf = Column(String(14), unique=True, index=True, nullable=False)
     email = Column(String(100), unique=True, index=True, nullable=False)
+    endereco = Column(String(200), nullable=False)
+    cidade = Column(String(100), nullable=False)
     senha_hash = Column(String(255), nullable=False)
     criado_em = Column(DateTime, default=lambda: datetime.now(timezone.utc))
     pets = relationship("Pet", back_populates="tutor")
@@ -20,6 +23,7 @@ class Pet(Base):
     __tablename__ = "pets"
 
     id = Column(Integer, primary_key=True, index=True)
+    telefone = Column(String(20), nullable=False)
     nome = Column(String, nullable=False)
     especie = Column(String, nullable=False)
     raca = Column(String, nullable=True)

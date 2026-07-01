@@ -87,6 +87,7 @@ def cadastrar_pet(
     ):
     novo_pet = Pet(
         nome=dados.nome,
+        telefone=dados.telefone,
         especie=dados.especie,
         raca=dados.raca,
         idade=dados.idade,
