@@ -32,17 +32,6 @@ function erro_cpf(){
   }
 }
 
-function erro_telefone(){
-  const telefone = document.getElementById("telefone").value
-  if (telefone.length !== 11){
-    document.getElementById("erro_telefone").textContent = "É necessário conter exatamente 11 dígitos"
-    document.getElementById("ok_telefone").textContent = ""
-  } else{
-    document.getElementById("ok_telefone").textContent = "Válido"
-    document.getElementById("erro_telefone").textContent = ""
-  }
-}
-
 function erro_endereco(){
   const endereco = document.getElementById("endereco").value
   if (endereco.length < 12){
@@ -51,17 +40,6 @@ function erro_endereco(){
   } else{
     document.getElementById("ok_endereco").textContent = "Válido"
     document.getElementById("erro_endereco").textContent = ""
-  }
-}
-
-function erro_bairro(){
-  const bairro = document.getElementById("bairro").value
-  if (bairro.length < 6){
-    document.getElementById("erro_bairro").textContent = "É necessário conter pelo menos 6 caracteres"
-    document.getElementById("ok_bairro").textContent = ""
-  } else{
-    document.getElementById("ok_bairro").textContent = "Válido"
-    document.getElementById("erro_bairro").textContent = ""
   }
 }
 
@@ -76,16 +54,6 @@ function erro_cidade(){
   }
 }
 
-function erro_estado(){
-  const estado = document.getElementById("estado").value
-  if (estado.length < 2){
-    document.getElementById("erro_estado").textContent = "É necessário conter pelo menos 2 caracteres"
-    document.getElementById("ok_estado").textContent = ""
-  } else{
-    document.getElementById("ok_estado").textContent = "Válido"
-    document.getElementById("erro_estado").textContent = ""
-  }
-}
 
 function erro_senha(){
   const senha_1 = document.getElementById("senha_1").value
@@ -122,18 +90,6 @@ function nome_pet(){
   } 
   }
 
-
-function data_nasc_pet(){
-  const data_nasc_pet = document.getElementById("data_nasc_pet").value
-  if (data_nasc_pet == ""){
-    document.getElementById("erro_nasc_pet").textContent = "A data de nascimento não pode estar vazia"
-    document.getElementById("ok_nasc_pet").textContent = ""
-  } else{
-    document.getElementById("erro_nasc_pet").textContent = ""
-    document.getElementById("ok_nasc_pet").textContent = "Válido"
-  } 
-}
-
 function especie(){
   const especie = document.getElementById("especie").value
   if (especie == "cachorro" || especie == "gato" || especie == "tartaruga" || especie == "hamster" || especie == "pássaro" || especie == "coelho"){
@@ -156,44 +112,172 @@ function raca(){
   }
 }
 
+function idade_pet() {
+  const idade_pet = document.getElementById("idade_pet").value.trim();
+
+  if (Number(idade_pet) <= 0) {
+    document.getElementById("erro_idade_pet").textContent = "Digite uma idade válida";
+    document.getElementById("ok_idade_pet").textContent = "";
+    return false;
+  } else {
+    document.getElementById("erro_idade_pet").textContent = "";
+    document.getElementById("ok_idade_pet").textContent = "Válido";
+    return true;
+  }
+}
+  
+function peso_pet() {
+  const peso_pet = document.getElementById("peso_pet").value;
+
+  if (Number(peso_pet) <= 0) {
+    document.getElementById("erro_peso_pet").textContent = "Digite um peso maior que 0";
+    document.getElementById("ok_peso_pet").textContent = "";
+  } else {
+    document.getElementById("erro_peso_pet").textContent = "";
+    document.getElementById("ok_peso_pet").textContent = "Válido";
+  }
+}
+
+function erro_telefone() {
+  const telefone = document.getElementById("telefone").value;
+
+  if (telefone.length < 10 || telefone.length > 12 ) {
+    document.getElementById("erro_telefone").textContent = "Digite um telefone com 12 digítos(DDD + Número)";
+    document.getElementById("ok_telefone").textContent = "";
+    return false;
+  } else {
+    document.getElementById("erro_telefone").textContent = "";
+    document.getElementById("ok_telefone").textContent = "Válido";
+    return true;
+  }
+}
+
+
+
 // Button Cadastrar
-const button = getElementById("cadastrar")
+const button = document.getElementById("cadastrar")
 
 function validar_cadastro() {
   erro_nome()
   erro_email()
   erro_cpf()
-  erro_telefone()
   erro_endereco()
-  erro_bairro()
   erro_cidade()
-  erro_estado()
   erro_senha()
   erro_repetir_senha()
-
   nome_pet()
-  data_nasc_pet()
   especie()
   raca()
+  idade_pet()
+  peso_pet()
+  erro_telefone()
 
   if (
     document.getElementById("erro_nome").textContent == "" &&
     document.getElementById("erro_email").textContent == "" &&
     document.getElementById("erro_cpf").textContent == "" &&
-    document.getElementById("erro_telefone").textContent == "" &&
     document.getElementById("erro_endereco").textContent == "" &&
-    document.getElementById("erro_bairro").textContent == "" &&
     document.getElementById("erro_cidade").textContent == "" &&
-    document.getElementById("erro_estado").textContent == "" &&
     document.getElementById("erro_senha").textContent == "" &&
     document.getElementById("erro_repetir_senha").textContent == "" &&
     document.getElementById("erro_nome_pet").textContent == "" &&
-    document.getElementById("erro_nasc_pet").textContent == "" &&
     document.getElementById("erro_especie").textContent == "" &&
-    document.getElementById("erro_raca").textContent == ""
+    document.getElementById("erro_raca").textContent == "" &&
+    document.getElementById("erro_idade_pet").textContent == "" &&
+    document.getElementById("erro_peso_pet").textContent == "" &&
+    document.getElementById("erro_telefone").textContent == "" 
+
   ) {
     alert("Cadastro concluído com sucesso")
   } else {
     alert("Preencha os campos corretamente")
   }
 }
+
+
+const form = document.getElementById("form");
+
+form.addEventListener("submit", async function (event) {
+  event.preventDefault();
+
+  validar_cadastro();
+
+  const temErro =
+    document.getElementById("erro_nome").textContent !== "" ||
+    document.getElementById("erro_email").textContent !== "" ||
+    document.getElementById("erro_cpf").textContent !== "" ||
+    document.getElementById("erro_endereco").textContent !== "" ||
+    document.getElementById("erro_cidade").textContent !== "" ||
+    document.getElementById("erro_senha").textContent !== "" ||
+    document.getElementById("erro_repetir_senha").textContent !== "" ||
+    document.getElementById("erro_nome_pet").textContent !== "" ||
+    document.getElementById("erro_especie").textContent !== "" ||
+    document.getElementById("erro_raca").textContent !== "" ||
+    document.getElementById("erro_idade_pet").textContent !== "" ||
+    document.getElementById("erro_peso_pet").textContent !== "" ||
+    document.getElementById("erro_telefone").textContent !== "";
+
+  if (temErro) {
+    return;
+  }
+
+  const dadosTutor = {
+    nome: document.getElementById("nome_dono").value.trim(),
+    cpf: document.getElementById("cpf").value.trim(),
+    email: document.getElementById("email").value.trim(),
+    endereco: document.getElementById("endereco").value.trim(),
+    cidade: document.getElementById("cidade").value.trim(),
+    senha: document.getElementById("senha_1").value
+  };
+
+  const dadosPet = {
+    nome: document.getElementById("nome_pet").value.trim(),
+    telefone: document.getElementById("telefone").value.trim(),
+    especie: document.getElementById("especie").value.trim(),
+    raca: document.getElementById("raca").value.trim(),
+    idade: Number(document.getElementById("idade_pet").value),
+    peso: Number(document.getElementById("peso_pet").value)
+  };
+
+  try {
+    const responseTutor = await fetch("http://127.0.0.1:8000/api/auth/registro", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(dadosTutor)
+    });
+
+    const dataTutor = await responseTutor.json();
+
+    if (!responseTutor.ok) {
+      alert(dataTutor.detail || "Erro ao cadastrar tutor.");
+      return;
+    }
+
+    const token = dataTutor.access_token;
+
+    const responsePet = await fetch("http://127.0.0.1:8000/api/pets", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "Authorization": `Bearer ${token}`
+      },
+      body: JSON.stringify(dadosPet)
+    });
+
+    const dataPet = await responsePet.json();
+
+    if (!responsePet.ok) {
+      alert(dataPet.detail || "Tutor cadastrado, mas houve erro ao cadastrar o pet.");
+      return;
+    }
+
+    alert("Cadastro concluído com sucesso!");
+    window.location.href = "login.html";
+
+  } catch (error) {
+    console.error("Erro na requisição:", error);
+    alert("Não foi possível conectar ao servidor.");
+  }
+});

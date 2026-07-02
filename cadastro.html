@@ -11,6 +11,7 @@
 </head>
 
 <body>
+  <form action="" id="form">
   <div>
     <h1>Cadastro</h1>
     <p>Cadastre-se para agendar serviços para seu pet</p>
@@ -47,24 +48,10 @@
       </div>
 
       <div class="label_input">
-        <label for="telefone">Telefone * </label>
-        <input type="number" id="telefone" name="telefone" placeholder="00 00000 0000" onblur="erro_telefone()">
-        <small class="erro" id="erro_telefone"></small>
-        <small class="ok" id="ok_telefone"></small>
-      </div>
-
-      <div class="label_input">
         <label for="endereco">Endereço * </label>
         <input type="text" id="endereco" name="endereco" placeholder="Sua Rua" onblur="erro_endereco()">
         <small class="erro" id="erro_endereco"></small>
         <small class="ok" id="ok_endereco"></small>
-      </div>
-
-      <div class="label_input">
-        <label for="bairro">Bairro * </label>
-        <input type="text" id="bairro" name="bairro" placeholder="Seu Bairro" onblur="erro_bairro()">
-        <small class="erro" id="erro_bairro"></small>
-        <small class="ok" id="ok_bairro"></small>
       </div>
 
       <div class="label_input">
@@ -75,22 +62,15 @@
       </div>
 
       <div class="label_input">
-        <label for="estado">Estado * </label>
-        <input type="text" id="estado" name="estado" placeholder="Seu Estado" onblur="erro_estado()">
-        <small class="erro" id="erro_estado"></small>
-        <small class="ok" id="ok_estado"></small>
-      </div>
-
-      <div class="label_input">
         <label for="senha_1">Senha * </label>
-        <input type="text" id="senha_1" name="senha_1" placeholder="Crie uma senha" onblur="erro_senha()">
+        <input type="password" id="senha_1" name="senha_1" placeholder="Crie uma senha" onblur="erro_senha()">
         <small class="erro" id="erro_senha"></small>
         <small class="ok" id="ok_senha"></small>
       </div>
 
       <div class="label_input">
-        <label for="senha">Senha * </label>
-        <input type="text" id="senha" name="senha" placeholder="Repita sua senha" onblur="erro_repetir_senha()">
+        <label for="senha">Digite novamente a senha * </label>
+        <input type="password" id="senha" name="senha" placeholder="Senha" onblur="erro_repetir_senha()">
         <small class="erro" id="erro_repetir_senha"></small>
         <small class="ok" id="ok_repetir_senha"></small>
       </div>
@@ -109,28 +89,42 @@
         <input type="text" id="nome_pet" name="nome_pet" placeholder="Digite o nome do seu Pet" onchange="nome_pet()">
         <small class="erro" id="erro_nome_pet"></small>
         <small class="ok" id="ok_nome_pet"></small>
-        
       </div>
-      <div class="label_input">
-        <label for="data_nasc_pet">Data de Nascimento * </label>
-        <input type="date" id="data_nasc_pet" name="data_nasc_pet" onchange="data_nasc_pet()">
-        <small class="erro" id="erro_nasc_pet"></small>
-        <small class="ok" id="ok_nasc_pet"></small>
-        
-      </div>
+
       <div class="label_input">
         <label for="especie">Especie * </label>
-        <input type="text" id="especie" name="especie" onchange="especie()">
+        <input type="text" id="especie" name="especie" placeholder="Digite a espécie do seu Pet" onchange="especie()">
         <small class="erro" id="erro_especie"></small>
         <small class="ok" id="ok_especie"></small>
         
       </div>
       <div class="label_input">
         <label for="raca">Raça * </label>
-        <input type="text" id="raca" name="raca" onchange="raca()">
+        <input type="text" id="raca" name="raca" placeholder="Digite a raça do seu Pet" onchange="raca()">
         <small class="erro" id="erro_raca"></small>
         <small class="ok" id="ok_raca"></small>
-        
+      </div>
+
+      <div class="label_input">
+        <label for="idade_pet">Idade * </label>
+        <input type="text" id="idade_pet" name="idade_pet" placeholder="Digite a idade do seu pet" onchange="idade_pet()">
+        <small class="erro" id="erro_idade_pet"></small>
+        <small class="ok" id="ok_idade_pet"></small>
+      </div>
+
+
+      <div class="label_input">
+        <label for="peso_pet">Peso * </label>
+        <input type="number" id="peso_pet" name="peso_pet" placeholder="Digite o peso do seu Pet" onchange="peso_pet()">
+        <small class="erro" id="erro_peso_pet"></small>
+        <small class="ok" id="ok_peso_pet"></small>
+      </div>
+
+      <div class="label_input">
+        <label for="telefone">Telefone do Tutor * </label>
+        <input type="number" id="telefone" name="telefone" placeholder="Digite o seu telefone" onchange="peso_pet()">
+        <small class="erro" id="erro_telefone"></small>
+        <small class="ok" id="ok_telefone"></small>
       </div>
 
     </section>
@@ -138,15 +132,15 @@
 
   <section>
     <div id="div_botoes">
-      <button id="cancelar"><a href="index.html">Cancelar</a></button>
-      <button id="cadastrar" onclick="validar_cadastro()">Finalizar Cadastro</button>
+      <button type="button" id="cancelar"><a href="index.html">Cancelar</a></button>
+      <button type="submit" id="cadastrar" onclick="validar_cadastro()">Finalizar Cadastro</button>
     </div>
     <div id="fim">
       <p>Já tem uma conta?</p>
       <a href="login.html">Login</a>
     </div>
   </section>
-
+</form>
 </body>
 
 </html>

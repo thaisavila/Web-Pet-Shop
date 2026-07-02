@@ -10,6 +10,7 @@
 </head>
 
 <body>
+  
   <section id="section_principal">
     <button id="button_home"><a href="index.html" >Voltar</a></button>
 
@@ -19,7 +20,7 @@
     </div>
 
       <section>
-        <form action="">
+        <form action="" id="form_login">
           <div id="inputs">
           <label for="email_login">Email</label>
           <input type="email" id="email_login" name="email_login" placeholder="Digite seu email">
@@ -34,7 +35,9 @@
           </div>
 
           <div id="fim">
-          <button id="entrar">Entrar na conta</button>
+          <button id="entrar" type="submit">Entrar na conta</button>
+
+          <p id="mensagem_login"></p>
 
           <div id="cadastro">
             <p>Não tem uma conta? </p>
@@ -45,6 +48,8 @@
       </section>
     
   </section>
+
+  <script src="js/login.js"></script>
 </body>
 
 </html>
