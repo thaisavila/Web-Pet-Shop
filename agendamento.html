@@ -17,7 +17,11 @@ deve ser numérico e permitir aumentar ou diminuir a quantidade de pets, vagas o
 Deve conter um botão de “Finalizar Agendamento”. Se o usuário clicar em diminuir para valor igual ou
 menor que zero, exiba uma mensagem de confirmação para que ele confirme se irá ou não excluir o item
 (utilize JS); -->
-  <button id="button_home"><a href="index.html">← Voltar para Home</a></button>
+<a href="index.html" id="button_home">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><polyline points="15 18 9 12 15 6"/></svg>
+        Voltar para Home
+      </a>
+
   <div id="parte_cima">
     <h1>Meus Agendamentos</h1>
     <h4>Configure os detalhes e revise os serviços selecionados</h4>
@@ -34,25 +38,18 @@ menor que zero, exiba uma mensagem de confirmação para que ele confirme se ir�
           <div class="conteudo_detalhes" id="resumo_pedido">
             <div class="infos_pedido">
               <p class="p1">Animal</p>
-              <p class="p2">Cachorro</p>
+              <p class="p2" id="resumo_animal">Cachorro</p>
             </div>
 
             <div class="infos_pedido">
               <p class="p1">Porte</p>
-              <p class="p2">Médio</p>
+              <p class="p2" id="resumo_porte">Pequeno</p>
             </div>
 
             <div class="infos_pedido">
               <p class="p1">Fase da vida</p>
-              <p class="p2">Adulto</p>
+              <p class="p2" id="resumo_fase">Filhote</p>
 
-            </div>
-
-            <hr>
-
-            <div class="infos_pedido">
-              <p class="p1">1 Tosa Completa</p>
-              <p class="p2">R$100,00</p>
             </div>
 
             <hr>
@@ -91,7 +88,7 @@ menor que zero, exiba uma mensagem de confirmação para que ele confirme se ir�
 
             <div id="data">
               <p id="label_data">Data do agendamento</p>
-              <input type="date" id="input_data" name="data">
+              <input type="date" id="input_data" name="data" style="font-family: 'Inter', sans-serif; font-size: 15px; text-indent: 5px;">
             </div>
 
             <div id="hora">
@@ -223,21 +220,17 @@ menor que zero, exiba uma mensagem de confirmação para que ele confirme se ir�
 
               <div id="conteudo_detalhes">
                 <div id="div_img_agendamento">
-                <img src="assets/davi.jpg" alt="" width="50px">
                 </div>
 
                 <div id="p_agendamento">
-                <p>Tosa Completa</p>
                 </div>
 
                 <div id="div_quant_agendamento">
                   <button>-</button>
-                  <p>1</p>
                   <button>+</button>
                 </div>
 
                 <div id="div_valor">
-                <p>R$100,00</p>
                 <img src="assets/excluir.png" height="20rem" alt="">
                 </div>
               

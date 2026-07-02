@@ -26,23 +26,31 @@ function saveCart(cart) {
   localStorage.setItem('petcare_cart', JSON.stringify(cart));
   updateCartBadge();
 }
-
-function addToCart(id, nome, valorEstimado, duracaoMedia) {
+function addToCart(id, nome, valorEstimado, duracaoMedia, imagemUrl) {
   let cart = getCart();
-  if (!cart.find(c => c.id === id)) {
-    const price = (valorEstimado || valorEstimado === 0) ? `R$ ${Number(valorEstimado).toFixed(2)}` : '';
-    cart.push({ id, name: nome, price, dur: duracaoMedia || '' });
+  const existente = cart.find(c => c.id === id);
+  if (existente) {
+    existente.qty = (existente.qty || 1) + 1;
+  } else {
+    cart.push({
+      id,
+      name: nome,
+      priceValue: valorEstimado != null ? Number(valorEstimado) : null,
+      dur: duracaoMedia || '',
+      img: imagemUrl || '',
+      qty: 1,
+    });
   }
   saveCart(cart);
   showToast('Serviço adicionado!', `${nome} está no seu agendamento`);
 }
-
 function updateCartBadge() {
   const badge = document.getElementById('cart-badge');
   if(badge) {
     const cart = getCart();
-    badge.textContent = cart.length;
-    badge.classList.toggle('visible', cart.length > 0);
+    const total = cart.reduce((sum, c) => sum + (c.qty || 1), 0);
+    badge.textContent = total;
+    badge.classList.toggle('visible', total > 0);
   }
 }
 
