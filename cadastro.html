@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -11,11 +10,53 @@
 </head>
 
 <body>
+  <div id="toast"><div class="toast-title" id="toast-title"></div><div class="toast-desc" id="toast-desc"></div></div>
+
+<header id="site-header">
+  <div class="h_container">
+    <nav class="main">
+      <a href="index.html" class="logo">
+        <div class="logo-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.2"><path d="M11 4C11 5.65685 9.65685 7 8 7C6.34315 7 5 5.65685 5 4C5 2.34315 6.34315 1 8 1C9.65685 1 11 2.34315 11 4Z"/><path d="M19 4C19 5.65685 17.6569 7 16 7C14.3431 7 13 5.65685 13 4C13 2.34315 14.3431 1 16 1C17.6569 1 19 2.34315 19 4Z"/><path d="M4 11C4 12.6569 2.65685 14 1 14C-0.656854 14 -2 12.6569 -2 11C-2 9.34315 -0.656854 8 1 8C2.65685 8 4 9.34315 4 11Z" transform="translate(3,0)"/><path d="M23 11C23 12.6569 21.6569 14 20 14C18.3431 14 17 12.6569 17 11C17 9.34315 18.3431 8 20 8C21.6569 8 23 9.34315 23 11Z"/><path d="M12 10C8 10 4 13 4 17C4 20 7 23 12 23C17 23 20 20 20 17C20 13 16 10 12 10Z"/></svg>
+        </div>
+        <div class="logo-text"><span class="name">Pet<span>Care</span></span><span class="tagline">Cuidado com amor</span></div>
+      </a>
+
+      <div class="nav-links">
+        <a href="index.html">Início</a>
+        <a href="index.html#servicos">Serviços</a>
+        <a href="index.html#sobre">Sobre</a>
+        <a href="index.html#contato">Contato</a>
+      </div>
+
+      <div class="nav-actions">
+        <a href="login.html" class="btn btn-outline btn-sm">Entrar</a>
+        <a href="agendamento.html" class="btn btn-primary btn-sm cart-btn">
+          <span class="desktop-only">Agendamentos</span>
+          <span class="cart-badge" id="cart-badge">0</span>
+        </a>
+
+        <button class="hamburger" id="hamburger-btn" aria-label="Menu">
+          <svg id="ham-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+          <svg id="ham-close" class="hidden" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+        </button>
+      </div>
+    </nav>
+  </div>
+
+  <div class="mobile-menu" id="mobile-menu">
+    <a href="index.html">Início</a>
+    <a href="index.html#servicos">Serviços</a>
+    <a href="index.html#sobre">Sobre</a>
+    <a href="index.html#contato">Contato</a>
+    <a href="login.html">Entrar na conta</a>
+  </div>
+</header>
+  
   <form action="" id="form">
-  <div>
+  <div id="title_top">
     <h1>Cadastro</h1>
     <p>Cadastre-se para agendar serviços para seu pet</p>
-    
 
   </div>
 
@@ -95,9 +136,9 @@
         <label for="especie">Especie * </label>
         <input type="text" id="especie" name="especie" placeholder="Digite a espécie do seu Pet" onchange="function_especie()">
         <small class="erro" id="erro_especie"></small>
-        <small class="ok" id="ok_especie"></small>
-        
+        <small class="ok" id="ok_especie"></small>  
       </div>
+
       <div class="label_input">
         <label for="raca">Raça * </label>
         <input type="text" id="raca" name="raca" placeholder="Digite a raça do seu Pet" onchange="function_raca()">

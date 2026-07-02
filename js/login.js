@@ -7,19 +7,24 @@ const botaoEntrar = document.getElementById("entrar");
 
 const API_BASE = "http://localhost:8000";
 
+// Botão
 formLogin.addEventListener("submit", async function (event) {
+  // Comportamento de recarregar
   event.preventDefault();
 
+  // Muda o botão pra entrando
   mensagemLogin.textContent = "";
   botaoEntrar.disabled = true;
   botaoEntrar.textContent = "Entrando...";
 
+  // Monta o corpo da requisição
   const body = {
     email: emailInput.value.trim(),
     senha: senhaInput.value
   };
 
   try {
+    // Requisição
     const response = await fetch(`${API_BASE}/api/auth/login`, {
       method: "POST",
       headers: {
@@ -28,6 +33,7 @@ formLogin.addEventListener("submit", async function (event) {
       body: JSON.stringify(body)
     });
 
+    // 
     const contentType = response.headers.get("content-type");
     const dados = contentType && contentType.includes("application/json")
       ? await response.json()
