@@ -11,7 +11,7 @@ function erro_nome() {
 }
 
 function erro_email(){
-  const email = document.getElementById("email").value
+  const email = document.getElementById("email").value;
   if (!email.includes("@")){
     document.getElementById("erro_email").textContent = "É necessário conter um '@'"
     document.getElementById("ok_email").textContent = ""
@@ -79,7 +79,7 @@ function erro_repetir_senha(){
 }
 
 // Erros do Pet
-function nome_pet(){
+function function_nome_pet(){
   const nome_pet = document.getElementById("nome_pet").value
   if (nome_pet == ""){
     document.getElementById("erro_nome_pet").textContent = "Esse campo não pode estar vazio"
@@ -90,7 +90,7 @@ function nome_pet(){
   } 
   }
 
-function especie(){
+function function_especie(){
   const especie = document.getElementById("especie").value
   if (especie == "cachorro" || especie == "gato" || especie == "tartaruga" || especie == "hamster" || especie == "pássaro" || especie == "coelho"){
     document.getElementById("erro_especie").textContent = ""
@@ -101,7 +101,7 @@ function especie(){
   } 
 }
 
-function raca(){
+function function_raca(){
   const raca = document.getElementById("raca").value
   if (raca.length<4){
     document.getElementById("erro_raca").textContent = "É necessário pelo menos 4 caracteres"
@@ -112,7 +112,7 @@ function raca(){
   }
 }
 
-function idade_pet() {
+function function_idade_pet() {
   const idade_pet = document.getElementById("idade_pet").value.trim();
 
   if (Number(idade_pet) <= 0) {
@@ -126,7 +126,7 @@ function idade_pet() {
   }
 }
   
-function peso_pet() {
+function function_peso_pet() {
   const peso_pet = document.getElementById("peso_pet").value;
 
   if (Number(peso_pet) <= 0) {
@@ -138,7 +138,7 @@ function peso_pet() {
   }
 }
 
-function erro_telefone() {
+function function_erro_telefone() {
   const telefone = document.getElementById("telefone").value;
 
   if (telefone.length < 10 || telefone.length > 12 ) {
@@ -154,45 +154,45 @@ function erro_telefone() {
 
 
 
-// Button Cadastrar
-const button = document.getElementById("cadastrar")
+// // Button Cadastrar
+// const button = document.getElementById("cadastrar")
 
-function validar_cadastro() {
-  erro_nome()
-  erro_email()
-  erro_cpf()
-  erro_endereco()
-  erro_cidade()
-  erro_senha()
-  erro_repetir_senha()
-  nome_pet()
-  especie()
-  raca()
-  idade_pet()
-  peso_pet()
-  erro_telefone()
+// function validar_cadastro() {
+//   erro_nome()
+//   erro_email()
+//   erro_cpf()
+//   erro_endereco()
+//   erro_cidade()
+//   erro_senha()
+//   erro_repetir_senha()
+//   function_nome_pet()
+//   function_especie()
+//   function_raca()
+//   function_idade_pet()
+//   function_peso_pet()
+//   function_erro_telefone()
 
-  if (
-    document.getElementById("erro_nome").textContent == "" &&
-    document.getElementById("erro_email").textContent == "" &&
-    document.getElementById("erro_cpf").textContent == "" &&
-    document.getElementById("erro_endereco").textContent == "" &&
-    document.getElementById("erro_cidade").textContent == "" &&
-    document.getElementById("erro_senha").textContent == "" &&
-    document.getElementById("erro_repetir_senha").textContent == "" &&
-    document.getElementById("erro_nome_pet").textContent == "" &&
-    document.getElementById("erro_especie").textContent == "" &&
-    document.getElementById("erro_raca").textContent == "" &&
-    document.getElementById("erro_idade_pet").textContent == "" &&
-    document.getElementById("erro_peso_pet").textContent == "" &&
-    document.getElementById("erro_telefone").textContent == "" 
+//   if (
+//     document.getElementById("erro_nome").textContent == "" &&
+//     document.getElementById("erro_email").textContent == "" &&
+//     document.getElementById("erro_cpf").textContent == "" &&
+//     document.getElementById("erro_endereco").textContent == "" &&
+//     document.getElementById("erro_cidade").textContent == "" &&
+//     document.getElementById("erro_senha").textContent == "" &&
+//     document.getElementById("erro_repetir_senha").textContent == "" &&
+//     document.getElementById("erro_nome_pet").textContent == "" &&
+//     document.getElementById("erro_especie").textContent == "" &&
+//     document.getElementById("erro_raca").textContent == "" &&
+//     document.getElementById("erro_idade_pet").textContent == "" &&
+//     document.getElementById("erro_peso_pet").textContent == "" &&
+//     document.getElementById("erro_telefone").textContent == "" 
 
-  ) {
-    alert("Cadastro concluído com sucesso")
-  } else {
-    alert("Preencha os campos corretamente")
-  }
-}
+//   ) {
+//     alert("Cadastro concluído com sucesso")
+//   } else {
+//     alert("Preencha os campos corretamente")
+//   }
+// }
 
 
 const form = document.getElementById("form");
@@ -200,7 +200,7 @@ const form = document.getElementById("form");
 form.addEventListener("submit", async function (event) {
   event.preventDefault();
 
-  validar_cadastro();
+  // validar_cadastro();
 
   const temErro =
     document.getElementById("erro_nome").textContent !== "" ||

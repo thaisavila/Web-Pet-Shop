@@ -86,28 +86,28 @@
     <section class="container_conteudo">
       <div class="label_input">
         <label for="nome_pet">Nome do Pet * </label>
-        <input type="text" id="nome_pet" name="nome_pet" placeholder="Digite o nome do seu Pet" onchange="nome_pet()">
+        <input type="text" id="nome_pet" name="nome_pet" placeholder="Digite o nome do seu Pet" onchange="function_nome_pet()">
         <small class="erro" id="erro_nome_pet"></small>
         <small class="ok" id="ok_nome_pet"></small>
       </div>
 
       <div class="label_input">
         <label for="especie">Especie * </label>
-        <input type="text" id="especie" name="especie" placeholder="Digite a espécie do seu Pet" onchange="especie()">
+        <input type="text" id="especie" name="especie" placeholder="Digite a espécie do seu Pet" onchange="function_especie()">
         <small class="erro" id="erro_especie"></small>
         <small class="ok" id="ok_especie"></small>
         
       </div>
       <div class="label_input">
         <label for="raca">Raça * </label>
-        <input type="text" id="raca" name="raca" placeholder="Digite a raça do seu Pet" onchange="raca()">
+        <input type="text" id="raca" name="raca" placeholder="Digite a raça do seu Pet" onchange="function_raca()">
         <small class="erro" id="erro_raca"></small>
         <small class="ok" id="ok_raca"></small>
       </div>
 
       <div class="label_input">
         <label for="idade_pet">Idade * </label>
-        <input type="text" id="idade_pet" name="idade_pet" placeholder="Digite a idade do seu pet" onchange="idade_pet()">
+        <input type="text" id="idade_pet" name="idade_pet" placeholder="Digite a idade do seu pet" onchange="function_idade_pet()">
         <small class="erro" id="erro_idade_pet"></small>
         <small class="ok" id="ok_idade_pet"></small>
       </div>
@@ -115,14 +115,14 @@
 
       <div class="label_input">
         <label for="peso_pet">Peso * </label>
-        <input type="number" id="peso_pet" name="peso_pet" placeholder="Digite o peso do seu Pet" onchange="peso_pet()">
+        <input type="number" id="peso_pet" name="peso_pet" placeholder="Digite o peso do seu Pet" onchange="function_peso_pet()">
         <small class="erro" id="erro_peso_pet"></small>
         <small class="ok" id="ok_peso_pet"></small>
       </div>
 
       <div class="label_input">
         <label for="telefone">Telefone do Tutor * </label>
-        <input type="number" id="telefone" name="telefone" placeholder="Digite o seu telefone" onchange="peso_pet()">
+        <input type="number" id="telefone" name="telefone" placeholder="Digite o seu telefone" onchange="function_erro_telefone()">
         <small class="erro" id="erro_telefone"></small>
         <small class="ok" id="ok_telefone"></small>
       </div>
@@ -133,7 +133,7 @@
   <section>
     <div id="div_botoes">
       <button type="button" id="cancelar"><a href="index.html">Cancelar</a></button>
-      <button type="submit" id="cadastrar" onclick="validar_cadastro()">Finalizar Cadastro</button>
+      <button type="submit" id="cadastrar" >Finalizar Cadastro</button>
     </div>
     <div id="fim">
       <p>Já tem uma conta?</p>
