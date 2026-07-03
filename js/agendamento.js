@@ -88,7 +88,7 @@ function renderAgendamento() {
       </div>
       <div id="div_valor" style="display:flex;align-items:center;gap:10px">
         <p>${formatPrice((item.priceValue || 0) * (item.qty || 1))}</p>
-        <img src="assets/excluir.png" height="20rem" alt="Remover" class="btn-remover" data-id="${item.id}" style="cursor:pointer">
+        <img src="assets/excluir.png" height="20px" alt="Remover" class="btn-remover" data-id="${item.id}" style="cursor:pointer">
       </div>
     </div>
   `).join('');

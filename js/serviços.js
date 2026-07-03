@@ -18,7 +18,7 @@ function getIcon(name, size=20, color='currentColor') {
   return icons[name] || '';
 }
 
-/* Gerenciamento básico do carrinho baseado em localStorage */
+/* Gerenciamento básico do carrinho  */
 function getCart() {
   return JSON.parse(localStorage.getItem('petcare_cart')) || [];
 }
@@ -54,17 +54,6 @@ function updateCartBadge() {
   }
 }
 
-/* Toast */
-let toastTimer;
-function showToast(title, desc='') {
-  const el = document.getElementById('toast');
-  if(!el) return;
-  document.getElementById('toast-title').textContent = title;
-  document.getElementById('toast-desc').textContent = desc;
-  el.classList.add('show');
-  clearTimeout(toastTimer);
-  toastTimer = setTimeout(() => el.classList.remove('show'), 3000);
-}
 
 /* Inicialização comum de cabeçalho e menu */
 document.addEventListener('DOMContentLoaded', () => {

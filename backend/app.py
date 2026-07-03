@@ -11,7 +11,7 @@ from schemas import UsuarioRegistro, UsuarioLogin, TokenResposta, UsuarioRespost
 from security import hash_senha, verificar_senha, criar_access_token, verificar_token
 from models import Base, Usuario, Categoria, Servico, Pet
 
-# Configuração do banco de dados (SQLite para desenvolvimento)
+# Configuração do banco de dados
 DATABASE_URL = "sqlite:///./petshopDB.sqlite"
 engine = create_engine(DATABASE_URL, connect_args={"check_same_thread": False})
 SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)

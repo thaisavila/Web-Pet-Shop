@@ -67,3 +67,28 @@ formLogin.addEventListener("submit", async function (event) {
     botaoEntrar.textContent = "Entrar na conta";
   }
 });
+
+/* Inicio do Header */
+document.addEventListener('DOMContentLoaded', () => {
+  updateCartBadge();
+  const hamBtn = document.getElementById('hamburger-btn');
+  if(hamBtn) {
+    hamBtn.addEventListener('click', () => {
+      const m = document.getElementById('mobile-menu');
+      const open = m.classList.toggle('open');
+      document.getElementById('ham-icon').classList.toggle('hidden', open);
+      document.getElementById('ham-close').classList.toggle('hidden', !open);
+    });
+  }
+  window.addEventListener('scroll', () => {
+    const header = document.getElementById('site-header');
+    if(header) header.classList.toggle('scrolled', window.scrollY > 10);
+  });
+});
+function closeMobile() {
+  document.getElementById('mobile-menu').classList.remove('open');
+  document.getElementById('ham-icon').classList.remove('hidden');
+  document.getElementById('ham-close').classList.add('hidden');
+}
+
+/* Fim do Header */
