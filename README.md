@@ -5,11 +5,17 @@ Sistema web para agendamento de serviços de pet shop, desenvolvido como projeto
 O Pet Care é uma aplicação web completa que permite o cadastro de usuários, registro de pets e agendamento de serviços como banho, tosa e outros cuidados para animais de estimação. O projeto foi desenvolvido com frontend em HTML, CSS e JavaScript puro e backend em Python com FastAPI, integrando uma API RESTful com autenticação JWT.
 
 ## Funcionalidades Principais
+
 ✅ Cadastro de usuários (tutores)
+
 ✅ Login 
+
 ✅ Registro de pets (nome, espécie, raça, idade, peso, telefone)
+
 ✅ Consulta de serviços disponíveis
+
 ✅ Agendamento de serviços (banho, tosa, etc.)
+
 ✅ Validação de campos e tratamento de erros
 
 ## 🛠️ Tecnologias Utilizadas
@@ -92,14 +98,22 @@ Katalon Studio - Testes de API
    Acesse: **http://localhost:5500**
 
 ## 🧪 Testes
+
 O projeto inclui testes automatizados desenvolvidos com Katalon Studio, cobrindo:
+
 ✅ Testes Funcionais (abertura de páginas, formulários, validações)
+
 ✅ Testes de aceitação para validar requisitos
+
 ✅ Casos de sucesso e cenários de erro
 
 Os testes estão em um repositório separado: https://github.com/thaisavila/Tests-Katalon-Studio
 
 👩‍💻 Autores
+
 Thais Ávila
+
 Graziele Sousa
+
 Matheus Santana
+
