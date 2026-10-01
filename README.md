@@ -109,7 +109,7 @@ O projeto inclui testes automatizados desenvolvidos com Katalon Studio, cobrindo
 
 Os testes estão em um repositório separado: https://github.com/thaisavila/Tests-Katalon-Studio
 
-👩‍💻 Autores
+## 👩‍💻 Autores
 
 Thais Ávila
 
